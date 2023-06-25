@@ -244,6 +244,12 @@ plot_fn<-function(df_dat, pos, neg, df_lab, val_df) {
 nav<-read.csv("Data/NAV.csv",header = F)
 oilsp<-read.csv("Data/OilSpills.csv", header = F)
 drum<-read.csv("Data/Red_Drum.csv", header = F)
+blucrabcat<-read.csv("Data/bluecrab_cat.csv", header = F)
+brownpeli<-read.csv("Data/brown_peli.csv", header = F)
+oystercat<-read.csv("Data/oyster_cat.csv", header = F)
+persmallbusi<-read.csv("Data/per_small_busi.csv", header = F)
+sstraw<-read.csv("Data/sst_raw.csv", header = F)
+vesfish<-read.csv("Data/VesselsFishing_SeafoodDealers.csv", header = F)
 
 
 
@@ -291,7 +297,7 @@ ui <- navbarPage(
 
       sidebarPanel(h1("Data Selection" , style = "font-size:34px;
                                                     text-align: center;"), width = 4,
-                   selectInput("data", label = h2("Choose Indicator:", style = "font-size:22px;"), choices = c("Nuisance Aquatic Vegetation", "Oil Spills", "Red Drum")),
+                   selectInput("data", label = h2("Choose Indicator:", style = "font-size:22px;"), choices = c("Nuisance Aquatic Vegetation", "Oil Spills", "Red Drum", "Blue Crab Catch","Brown Pelican", "Oyster Catch","Percent Small Business","Sea Surface Temp BB", "Vessels Fishing & Seafood Dealers")),
                    tags$style(".selectize-input {font-size: 18px}"),
                    tags$a(href="https://forms.gle/6ZWFZQuXUnDrfnqn9", "BB ESR Indicator Feedback Form", style="font-size:26px;text-algin=center; margin-top: 50px; margin-left: 25px; text-align: center; font-weight:bold;"),
                    imageOutput("threelogos"), 
