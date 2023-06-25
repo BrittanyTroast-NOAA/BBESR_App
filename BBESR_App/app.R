@@ -2,9 +2,11 @@
 #BBESR TOOL APP
 
 library(shiny)
-library(tidyverse)
+library(ggplot2)
+library(tidyr)
+library(dplyr)
 library(plotly)
-library(png)
+# library(png)
 library(gt)
 library(shinythemes)
 library(cowplot)
@@ -230,7 +232,7 @@ plot_fn<-function(df_dat, pos, neg, df_lab, val_df) {
     if (max(df_dat$year)-min(df_dat$year)>20) {
       plot_sec<-plot_sec+scale_x_continuous(breaks = seq(min(df_dat$year),max(df_dat$year),5))
     } else {
-      plot_sec<-plot_sec+scale_x_continuous(breaks = seq(min(df_dat$year),max(df_dat$year),2))
+      # plot_sec<-plot_sec+scale_x_continuous(breaks = seq(min(df_dat$year),max(df_dat$year),2))
     }
     plot_sec
     
@@ -239,7 +241,7 @@ plot_fn<-function(df_dat, pos, neg, df_lab, val_df) {
 
 
 #####DATA#####
-nav<-read.csv("Data/NAV.csv", dec=".",header = F)
+nav<-read.csv("Data/NAV.csv",header = F)
 oilsp<-read.csv("Data/OilSpills.csv", header = F)
 drum<-read.csv("Data/Red_Drum.csv", header = F)
 
@@ -286,14 +288,16 @@ ui <- navbarPage(
     title= "Explore Indicators",
     
     sidebarLayout(
-      
+
       sidebarPanel(h1("Data Selection" , style = "font-size:34px;
                                                     text-align: center;"), width = 4,
                    selectInput("data", label = h2("Choose Indicator:", style = "font-size:22px;"), choices = c("Nuisance Aquatic Vegetation", "Oil Spills", "Red Drum")),
                    tags$style(".selectize-input {font-size: 18px}"),
+                   tags$a(href="https://forms.gle/6ZWFZQuXUnDrfnqn9", "BB ESR Indicator Feedback Form", style="font-size:26px;text-algin=center; margin-top: 50px; margin-left: 25px; text-align: center; font-weight:bold;"),
                    imageOutput("threelogos"), 
                    tags$style("#threelogos {margin-bottom: -200px;
-                                              margin-top: 100px;}"),
+                                              margin-top: 50px;}",
+                   ),
       ),
       
       
@@ -343,6 +347,8 @@ ui <- navbarPage(
 
 #####Server#####
 server <- function(input, output) {
+  
+
   
   #####Main plot#####
   output$plot<-renderPlotly({
