@@ -1,0 +1,13 @@
+name: BBESR_App
+title: BBESR_App
+username:
+account: btroast-work
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 9362690
+bundleId: 7386237
+url: https://btroast-work.shinyapps.io/BBESR_App/
+when: 1687723212.51328
+lastSyncTime: 1687723212.51329
+asMultiple: FALSE
+asStatic: FALSE
