@@ -34,7 +34,7 @@ df_dat_fn<-function(df) {
       sub_list<-list() 
       for (i in 2:ncol(df_dat)){
         sub_df<-df_dat[,c(1,i)]
-        df_lab<-drum[1:3,] #For example sake cutting to only col I need
+        df_lab<-df[1:3,] #For example sake cutting to only col I need
         ind<-df_lab[3,]
         colnames(sub_df)<-c("year","value")
         # sub_df$value<- as.numeric(sub_df$value)
@@ -227,7 +227,8 @@ plot_fn<-function(df_dat, pos, neg, df_lab, val_df) {
       geom_line(aes(group=1), lwd=0.75)+
       labs(x="Year", y=df_lab[2,2], title = df_lab[1,2])+
       theme_bw()+theme(strip.background = element_blank(),
-                       strip.text = element_text(face="bold"))
+                       strip.text = element_text(face="bold"),
+                       title = element_text(size=14, face = "bold"))
     
     if (max(df_dat$year)-min(df_dat$year)>20) {
       plot_sec<-plot_sec+scale_x_continuous(breaks = seq(min(df_dat$year),max(df_dat$year),5))
@@ -297,7 +298,7 @@ ui <- navbarPage(
 
       sidebarPanel(h1("Data Selection" , style = "font-size:34px;
                                                     text-align: center;"), width = 4,
-                   selectInput("data", label = h2("Choose Indicator:", style = "font-size:22px;"), choices = c("Nuisance Aquatic Vegetation", "Oil Spills", "Red Drum", "Blue Crab Catch","Brown Pelican", "Oyster Catch","Percent Small Business","Sea Surface Temp BB", "Vessels Fishing & Seafood Dealers")),
+                   selectInput("data", label = h2("Choose Indicator:", style = "font-size:22px;"), choices = c("Oil Spills","Nuisance Aquatic Vegetation","Red Drum", "Blue Crab Catch","Brown Pelican", "Oyster Catch","Percent Small Business", "Vessels Fishing & Seafood Dealers")),
                    tags$style(".selectize-input {font-size: 18px}"),
                    tags$a(href="https://forms.gle/6ZWFZQuXUnDrfnqn9", "BB ESR Indicator Feedback Form", style="font-size:26px;text-algin=center; margin-top: 50px; margin-left: 25px; text-align: center; font-weight:bold;"),
                    imageOutput("threelogos"), 
@@ -308,7 +309,7 @@ ui <- navbarPage(
       
       
       #####Main#####
-      mainPanel(plotlyOutput("plot"),
+      mainPanel(plotlyOutput("plot", height = "500px"),
                 htmlOutput("time_range"),
                 tags$style("#time_range {font-size: 20px;
                                             margin-bottom: 0px;
@@ -358,7 +359,7 @@ server <- function(input, output) {
   
   #####Main plot#####
   output$plot<-renderPlotly({
-    df_pick <- switch(input$data, "Nuisance Aquatic Vegetation"=nav,"Oil Spills"=oilsp, "Red Drum"=drum)
+    df_pick <- switch(input$data, "Nuisance Aquatic Vegetation"=nav,"Oil Spills"=oilsp, "Red Drum"=drum, "Blue Crab Catch"=blucrabcat,"Brown Pelican"=brownpeli, "Oyster Catch"=oystercat,"Percent Small Business"=persmallbusi,"Vessels Fishing & Seafood Dealers"=vesfish)
     df_dat<-df_dat_fn(df_pick)
     pos<-pos_fn(df_dat)
     neg<-neg_fn(df_dat)
@@ -375,7 +376,7 @@ server <- function(input, output) {
   
   ###View data table###
   output$df_view<-renderTable({
-    df_pick <- switch(input$data, "Nuisance Aquatic Vegetation"=nav,"Oil Spills"=oilsp, "Red Drum"=drum)
+        df_pick <- switch(input$data, "Nuisance Aquatic Vegetation"=nav,"Oil Spills"=oilsp, "Red Drum"=drum, "Blue Crab Catch"=blucrabcat,"Brown Pelican"=brownpeli, "Oyster Catch"=oystercat,"Percent Small Business"=persmallbusi,"Vessels Fishing & Seafood Dealers"=vesfish)
     df_dat<-df_dat_fn(df_pick)
     
     df_dat<-df_dat_fn(df_pick)
@@ -387,7 +388,7 @@ server <- function(input, output) {
   
   #####Text Time Selected#####
   output$time_range<- renderText({
-    df_pick <- switch(input$data, "Nuisance Aquatic Vegetation"=nav,"Oil Spills"=oilsp, "Red Drum"=drum)
+        df_pick <- switch(input$data, "Nuisance Aquatic Vegetation"=nav,"Oil Spills"=oilsp, "Red Drum"=drum, "Blue Crab Catch"=blucrabcat,"Brown Pelican"=brownpeli, "Oyster Catch"=oystercat,"Percent Small Business"=persmallbusi,"Vessels Fishing & Seafood Dealers"=vesfish)
     selected_data <- event_data("plotly_relayout")
     df_dat<-df_dat_fn(df_pick)
     sel_dat<-df_dat[df_dat$year>selected_data$xaxis.range[1] & df_dat$year< selected_data$xaxis.range[2],]
@@ -405,7 +406,7 @@ server <- function(input, output) {
   
   #####Table#####
   output$gt_table<- render_gt({
-    df_pick <- switch(input$data, "Nuisance Aquatic Vegetation"=nav,"Oil Spills"=oilsp, "Red Drum"=drum)
+        df_pick <- switch(input$data, "Nuisance Aquatic Vegetation"=nav,"Oil Spills"=oilsp, "Red Drum"=drum, "Blue Crab Catch"=blucrabcat,"Brown Pelican"=brownpeli, "Oyster Catch"=oystercat,"Percent Small Business"=persmallbusi,"Vessels Fishing & Seafood Dealers"=vesfish)
     selected_data <- event_data("plotly_relayout")
     df_dat<-df_dat_fn(df_pick)
     val_df<-val_fn(df_dat)
@@ -443,7 +444,7 @@ server <- function(input, output) {
                       table.border.right.width = 5,
                       table.border.left.style = "solid",
                       table.border.right.style = "solid",) %>%
-          tab_style(style = cell_text(align = "center", size=px(16)),locations = cells_body()) %>%
+          tab_style(style = cell_text(align = "center", size=px(18)),locations = cells_body()) %>%
           tab_style(style = cell_text(align = "center", size=px(20), weight = "bold", color="#2c3e50"),locations = cells_stubhead()) %>%
           tab_style(style = cell_text(align = "center", size=px(18), weight = "bold", color="#2c3e50"),locations = cells_stub()) %>%
           tab_style(style = cell_text(align = "center", size=px(18)),locations = cells_column_labels()) %>%
@@ -499,7 +500,7 @@ server <- function(input, output) {
                       table.border.right.width = 5,
                       table.border.left.style = "solid",
                       table.border.right.style = "solid",) %>%
-          tab_style(style = cell_text(align = "center", size=px(16)),locations = cells_body()) %>%
+          tab_style(style = cell_text(align = "center", size=px(18)),locations = cells_body()) %>%
           tab_style(style = cell_text(align = "center", size=px(20), weight = "bold", color="#2c3e50"),locations = cells_stubhead()) %>%
           tab_style(style = cell_text(align = "center", size=px(18), weight = "bold", color="#2c3e50"),locations = cells_stub()) %>%
           tab_style(style = cell_text(align = "center", size=px(18)),locations = cells_column_labels()) %>%
@@ -531,7 +532,7 @@ server <- function(input, output) {
                       table.border.right.width = 5,
                       table.border.left.style = "solid",
                       table.border.right.style = "solid",) %>%
-          tab_style(style = cell_text(align = "center", size=px(16)),locations = cells_body()) %>%
+          tab_style(style = cell_text(align = "center", size=px(18)),locations = cells_body()) %>%
           tab_style(style = cell_text(align = "center", size=px(20), weight = "bold", color="#2c3e50"),locations = cells_stubhead()) %>%
           tab_style(style = cell_text(align = "center", size=px(18), weight = "bold", color="#2c3e50"),locations = cells_stub()) %>%
           tab_style(style = cell_text(align = "center", size=px(18)),locations = cells_column_labels()) %>%
@@ -564,7 +565,7 @@ server <- function(input, output) {
                       table.border.right.width = 5,
                       table.border.left.style = "solid",
                       table.border.right.style = "solid",) %>%
-          tab_style(style = cell_text(align = "center", size=px(16)),locations = cells_body()) %>%
+          tab_style(style = cell_text(align = "center", size=px(18)),locations = cells_body()) %>%
           tab_style(style = cell_text(align = "center", size=px(20), weight = "bold", color="#2c3e50"),locations = cells_stubhead()) %>%
           tab_style(style = cell_text(align = "center", size=px(18), weight = "bold", color="#2c3e50"),locations = cells_stub()) %>%
           tab_style(style = cell_text(align = "center", size=px(18)),locations = cells_column_labels()) %>%
@@ -584,7 +585,7 @@ server <- function(input, output) {
   
   #####Sel Trend Plot#####
   output$trend_plot<- renderPlot({
-    df_pick <- switch(input$data, "Nuisance Aquatic Vegetation"=nav,"Oil Spills"=oilsp, "Red Drum"=drum)
+        df_pick <- switch(input$data, "Nuisance Aquatic Vegetation"=nav,"Oil Spills"=oilsp, "Red Drum"=drum, "Blue Crab Catch"=blucrabcat,"Brown Pelican"=brownpeli, "Oyster Catch"=oystercat,"Percent Small Business"=persmallbusi,"Vessels Fishing & Seafood Dealers"=vesfish)
     df_dat<-df_dat_fn(df_pick)
     val_df<-val_df(df_dat)
     selected_data <- event_data("plotly_relayout")
@@ -616,7 +617,7 @@ server <- function(input, output) {
   
   #####Last5 Trend Plot#####
   output$trendplot_last5<- renderPlot({
-    df_pick <- switch(input$data, "Nuisance Aquatic Vegetation"=nav,"Oil Spills"=oilsp, "Red Drum"=drum)
+        df_pick <- switch(input$data, "Nuisance Aquatic Vegetation"=nav,"Oil Spills"=oilsp, "Red Drum"=drum, "Blue Crab Catch"=blucrabcat,"Brown Pelican"=brownpeli, "Oyster Catch"=oystercat,"Percent Small Business"=persmallbusi,"Vessels Fishing & Seafood Dealers"=vesfish)
     df_dat<-df_dat_fn(df_pick)
     val_df<-val_fn(df_dat)
     
@@ -633,7 +634,7 @@ server <- function(input, output) {
   })
   
   output$plain_text<-renderText({
-    df_pick <- switch(input$data, "Nuisance Aquatic Vegetation"=nav,"Oil Spills"=oilsp, "Red Drum"=drum)
+        df_pick <- switch(input$data, "Nuisance Aquatic Vegetation"=nav,"Oil Spills"=oilsp, "Red Drum"=drum, "Blue Crab Catch"=blucrabcat,"Brown Pelican"=brownpeli, "Oyster Catch"=oystercat,"Percent Small Business"=persmallbusi,"Vessels Fishing & Seafood Dealers"=vesfish)
     df_dat<-df_dat_fn(df_pick)
     df_lab<-df_pick[1:3, c(1:ncol(df_pick))] #For example sake cutting to only col I need
     val_df<-val_fn(df_dat)
