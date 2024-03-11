@@ -1,0 +1,101 @@
+---
+title: "Dashboard_Prac"
+format: 
+  dashboard:
+    nav-buttons: 
+    - github
+
+---
+
+
+```{r libraries, echo=F}
+library(tidyverse)
+library(plotly)
+library(leaflet)
+```
+
+# Page 1
+
+## Row
+
+```{r}
+#| component: valuebox
+
+list(
+  title= "Tree Value",
+  value= 31,
+  color= "#4287f5",
+  icon= "tree",
+  size=3
+)
+```
+
+
+```{r}
+#| component: valuebox
+
+list(
+  title= "House Value",
+  value= 464,
+  color= "#093c8f",
+  icon= "house"
+)
+```
+
+```{r}
+#| component: valuebox
+
+list(
+  title= "Paper Value",
+  value= 8,
+  color= "#17d1a6",
+  icon= "book"
+)
+```
+
+Text above code chunk shows in its own card so you can position it wherever needed.
+
+This dashboard function is supposed to be the continuation of "flexdashboard" (and bs_lib?) in quarto.
+
+## Row
+
+### Column {.tabset}
+
+```{r}
+#| title: Plot 1
+#| fig-cap: Plot for sepal length X width
+
+p1<-ggplot(iris, aes(x=Sepal.Length, y=Sepal.Width))+
+  geom_point(aes(color=Species))
+
+
+ggplotly(p1)
+```
+
+
+```{r}
+#| title: Plot 2
+#| fig-cap: Plot for petal length X width
+
+p2<-ggplot(iris, aes(x=Petal.Length, y=Petal.Width))+
+  geom_point(aes(color=Species))
+
+ggplotly(p2)
+```
+
+### Column
+```{r}
+leaflet() %>%
+  addTiles() %>%
+  setView(lat=25.73472, lng=-80.16229, zoom=14) %>% 
+  addProviderTiles("Stadia.StamenTerrain") %>%
+  addMarkers(lng=-80.16229, lat=25.73472, popup="<b>NOAA</b><br>AOML")
+```
+
+# Page 2
+
+```{r}
+ggplot(cars, aes(x=speed, y=dist))+
+  geom_point(color="navy")
+```
+
