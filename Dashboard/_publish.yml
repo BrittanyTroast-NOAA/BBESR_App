@@ -1,0 +1,4 @@
+- source: Dashboard_Prac.qmd
+  quarto-pub:
+    - id: 0aee274a-8316-4a9a-aed9-2d913891dbe0
+      url: 'https://brittanytroast-noaa.quarto.pub/practice-dashboard'
