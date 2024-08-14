@@ -64,10 +64,9 @@ leaflet() %>%
   addMarkers(lng=-80.16229, lat=25.73472, popup="<b>NOAA</b><br>AOML")
 ```
 
-
 # Landing Page 2
 
-## Row 1 {height="20%"}
+## Row 1 {height="30%"}
 
 ```{r}
 #| component: valuebox
@@ -103,13 +102,13 @@ list(
 )
 ```
 
-::: {.card title="Text"}
-Text above code chunk shows in its own card so you can position it wherever needed.
+<!-- ::: {.card title="Text"} -->
+<!-- Text above code chunk shows in its own card so you can position it wherever needed. -->
 
-You can **edit** this text as you *would* normally in the visual editor.
+<!-- You can **edit** this text as you *would* normally in the visual editor. -->
 
-This dashboard function is supposed to be the continuation of "flexdashboard" (and bs_lib?) in quarto.
-:::
+<!-- This dashboard function is supposed to be the continuation of "flexdashboard" (and bs_lib?) in quarto. -->
+<!-- ::: -->
 
 ## Row
 
@@ -155,10 +154,9 @@ leaflet() %>%
   addMarkers(lng=-80.16229, lat=25.73472, popup="<b>NOAA</b><br>AOML")
 ```
 
-
 # Category Page
 
-## Test
+## Same Row
 
 ::: {.card title="Plot 1"}
 ```{r}
@@ -174,13 +172,14 @@ Add text to the same card as a figure.
 
 ```{r}
 #| title: Plot 2
+
 p4<-ggplot(cars, aes(x=speed, y=dist))+
   geom_bar(fill="navy", stat="identity")
 
 ggplotly(p4)
 ```
 
-## Test
+## Separate Row
 
 ```{r}
 #| title: Plot 3
@@ -193,10 +192,10 @@ ggplotly(p5)
 # Other
 
 ##  {.sidebar}
-It appears that when you add a sidebar to a page it switches the orientation to columns. Since the sidebar is a column. The opposite may be true for toolbars (untested). 
 
-This sidebar is often used for putting shiny inputs (e.g. sliders, selections) into. <br>
-<https://quarto.org/docs/dashboards/interactivity/shiny-r.html>
+It appears that when you add a sidebar to a page it switches the orientation to columns. Since the sidebar is a column. The opposite may be true for toolbars (untested).
+
+This sidebar is often used for putting shiny inputs (e.g. sliders, selections) into. <br> <https://quarto.org/docs/dashboards/interactivity/shiny-r.html>
 
 ## Table
 
@@ -209,6 +208,7 @@ knitr::kable(iris)
 ```
 
 ## Figs
+
 ```{r}
 #| layout-ncol: 1
 p3<-ggplot(iris, aes(x=Sepal.Length, y=Sepal.Width))+
@@ -224,11 +224,14 @@ p4<-ggplot(iris, aes(x=Sepal.Length, y=Sepal.Width))+
 ggplotly(p4)
 ```
 
-
 # References
 
+## Text Row
+
+::: {.card title="Icons"}
 There are many places where you can add icons. Here is the link to the list of Bootstrap Icons. <br> <https://icons.getbootstrap.com/> <br> There are other packages you can load in and call icons from (e.g. favicon).
+:::
 
-```{r}
-
-```
+::: {.card title="YouTube Walkthrough"}
+Here is the [video](https://youtu.be/_VGJIPRGTy4?si=8JwG_44h_UTontwb) from Posit of an introduction to Dashboards. <br>
+:::
