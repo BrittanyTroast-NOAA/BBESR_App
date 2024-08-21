@@ -271,5 +271,13 @@ peli_val<-val_fn(peli_df)
 
 test<-plot_fn(peli_df, peli_pos, peli_neg, peli_lab, peli_val)
 ggplotly(test)
+
+#Put different parts of the plot into an array
+array(c(peli_df, peli_pos, peli_neg, peli_lab, peli_val))
+
+peli_list<-list(peli_df, peli_pos, peli_neg, peli_lab, peli_val)
+names(peli_list)<-c("data", "pos", "neg", "labs", "vals")
+
+class(peli_list)
 ```
 

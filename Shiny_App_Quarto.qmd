@@ -1,7 +1,9 @@
 ---
 title: "Shiny_App_Quarto"
 format:
-  html: 
+  html:
+    resources: 
+      - shinylive-sw.js
     grid:
       body-width: 1400px
     toc: true

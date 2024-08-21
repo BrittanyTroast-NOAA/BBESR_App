@@ -1,0 +1,26 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Shiny_App_Quarto",
+    "section": "",
+    "text": "Lets see if this works.",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Index</span>"
+    ]
+  },
+  {
+    "objectID": "Shiny_App_Quarto.html",
+    "href": "Shiny_App_Quarto.html",
+    "title": "2  Shiny_App_Quarto",
+    "section": "",
+    "text": "3 App"
+  },
+  {
+    "objectID": "Shiny_App_Quarto.html#really-cool",
+    "href": "Shiny_App_Quarto.html#really-cool",
+    "title": "2  Shiny_App_Quarto",
+    "section": "Really cool",
+    "text": "Really cool\nI hope I can utilize this."
+  }
+]

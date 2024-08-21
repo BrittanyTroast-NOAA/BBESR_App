@@ -1,0 +1,845 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.4.551">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Data_Squint</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="Data_Squint_files/libs/clipboard/clipboard.min.js"></script>
+<script src="Data_Squint_files/libs/quarto-html/quarto.js"></script>
+<script src="Data_Squint_files/libs/quarto-html/popper.min.js"></script>
+<script src="Data_Squint_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="Data_Squint_files/libs/quarto-html/anchor.min.js"></script>
+<link href="Data_Squint_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="Data_Squint_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="Data_Squint_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="Data_Squint_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="Data_Squint_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="Data_Squint_files/libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
+
+<script src="Data_Squint_files/libs/plotly-binding-4.10.4/plotly.js"></script>
+
+<script src="Data_Squint_files/libs/typedarray-0.1/typedarray.min.js"></script>
+
+<script src="Data_Squint_files/libs/jquery-3.5.1/jquery.min.js"></script>
+
+<link href="Data_Squint_files/libs/crosstalk-1.2.1/css/crosstalk.min.css" rel="stylesheet">
+
+<script src="Data_Squint_files/libs/crosstalk-1.2.1/js/crosstalk.min.js"></script>
+
+<link href="Data_Squint_files/libs/plotly-htmlwidgets-css-2.11.1/plotly-htmlwidgets.css" rel="stylesheet">
+
+<script src="Data_Squint_files/libs/plotly-main-2.11.1/plotly-latest.min.js"></script>
+
+
+
+</head>
+
+<body class="fullcontent">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Data_Squint</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>Library</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'ggplot2' was built under R version 4.3.3</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(plotly)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'plotly' was built under R version 4.3.3</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>
+Attaching package: 'plotly'</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following object is masked from 'package:ggplot2':
+
+    last_plot</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following object is masked from 'package:stats':
+
+    filter</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following object is masked from 'package:graphics':
+
+    layout</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyr)</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'dplyr' was built under R version 4.3.2</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>
+Attaching package: 'dplyr'</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following objects are masked from 'package:stats':
+
+    filter, lag</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following objects are masked from 'package:base':
+
+    intersect, setdiff, setequal, union</code></pre>
+</div>
+</div>
+<p>Load Data</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>crab<span class="ot">&lt;-</span><span class="fu">read.csv</span>(<span class="st">"Data/bluecrab_cat.csv"</span>, <span class="at">header=</span>F)</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>peli<span class="ot">&lt;-</span><span class="fu">read.csv</span>(<span class="st">"Data/brown_peli.csv"</span>, <span class="at">header=</span>F)</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>nav<span class="ot">&lt;-</span><span class="fu">read.csv</span>(<span class="st">"Data/NAV.csv"</span>, <span class="at">header=</span>F)</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>oilspill<span class="ot">&lt;-</span><span class="fu">read.csv</span>(<span class="st">"Data/OilSpills.csv"</span>, <span class="at">header=</span>F)</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>oyster<span class="ot">&lt;-</span><span class="fu">read.csv</span>(<span class="st">"Data/oyster_cat.csv"</span>, <span class="at">header=</span>F)</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>sml_bus<span class="ot">&lt;-</span><span class="fu">read.csv</span>(<span class="st">"Data/per_small_busi.csv"</span>, <span class="at">header=</span>F)</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>red_drum<span class="ot">&lt;-</span><span class="fu">read.csv</span>(<span class="st">"Data/Red_Drum.csv"</span>, <span class="at">header=</span>F)</span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>sst<span class="ot">&lt;-</span><span class="fu">read.csv</span>(<span class="st">"Data/sst_raw.csv"</span>, <span class="at">header=</span>F)</span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>ves_deal<span class="ot">&lt;-</span><span class="fu">read.csv</span>(<span class="st">"Data/VesselsFishing_SeafoodDealers.csv"</span>, <span class="at">header=</span>F)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Squint</p>
+<p>Functions for making data</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Data used for everything</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>df_dat_fn<span class="ot">&lt;-</span><span class="cf">function</span>(df) {</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  df_dat<span class="ot">&lt;-</span>df[<span class="dv">4</span><span class="sc">:</span><span class="fu">nrow</span>(df),<span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="fu">ncol</span>(df))] </span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">ncol</span>(df_dat)<span class="sc">&lt;</span><span class="fl">2.5</span>) {</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">colnames</span>(df_dat)<span class="ot">&lt;-</span><span class="fu">c</span>(<span class="st">"year"</span>,<span class="st">"value"</span>)</span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>    df_dat<span class="sc">$</span>value<span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(df_dat<span class="sc">$</span>value)</span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>    mean<span class="ot">&lt;-</span><span class="fu">mean</span>(<span class="fu">as.numeric</span>(df_dat<span class="sc">$</span>value), <span class="at">na.rm =</span> T)</span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>    sd<span class="ot">&lt;-</span><span class="fu">sd</span>(<span class="fu">as.numeric</span>(df_dat<span class="sc">$</span>value), <span class="at">na.rm =</span> T)</span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>    df_dat<span class="sc">$</span>valence[df_dat<span class="sc">$</span>value<span class="sc">&gt;=</span>mean]<span class="ot">&lt;-</span><span class="st">"pos"</span></span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a>    df_dat<span class="sc">$</span>valence[df_dat<span class="sc">$</span>value<span class="sc">&lt;</span> mean]<span class="ot">&lt;-</span><span class="st">"neg"</span></span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a>    df_dat<span class="sc">$</span>min <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(df_dat<span class="sc">$</span>value <span class="sc">&gt;=</span> mean, mean, df_dat<span class="sc">$</span>value)</span>
+<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a>    df_dat<span class="sc">$</span>max <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(df_dat<span class="sc">$</span>value <span class="sc">&gt;=</span> mean, df_dat<span class="sc">$</span>value, mean)</span>
+<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a>    df_dat<span class="sc">$</span>year <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(df_dat<span class="sc">$</span>year)</span>
+<span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a>    df_dat} <span class="cf">else</span> {</span>
+<span id="cb15-18"><a href="#cb15-18" aria-hidden="true" tabindex="-1"></a>      </span>
+<span id="cb15-19"><a href="#cb15-19" aria-hidden="true" tabindex="-1"></a>      sub_list<span class="ot">&lt;-</span><span class="fu">list</span>() </span>
+<span id="cb15-20"><a href="#cb15-20" aria-hidden="true" tabindex="-1"></a>      <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">2</span><span class="sc">:</span><span class="fu">ncol</span>(df_dat)){</span>
+<span id="cb15-21"><a href="#cb15-21" aria-hidden="true" tabindex="-1"></a>        sub_df<span class="ot">&lt;-</span>df_dat[,<span class="fu">c</span>(<span class="dv">1</span>,i)]</span>
+<span id="cb15-22"><a href="#cb15-22" aria-hidden="true" tabindex="-1"></a>        df_lab<span class="ot">&lt;-</span>df[<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>,] <span class="co">#For example sake cutting to only col I need</span></span>
+<span id="cb15-23"><a href="#cb15-23" aria-hidden="true" tabindex="-1"></a>        ind<span class="ot">&lt;-</span>df_lab[<span class="dv">3</span>,]</span>
+<span id="cb15-24"><a href="#cb15-24" aria-hidden="true" tabindex="-1"></a>        <span class="fu">colnames</span>(sub_df)<span class="ot">&lt;-</span><span class="fu">c</span>(<span class="st">"year"</span>,<span class="st">"value"</span>)</span>
+<span id="cb15-25"><a href="#cb15-25" aria-hidden="true" tabindex="-1"></a>        <span class="co"># sub_df$value&lt;- as.numeric(sub_df$value)</span></span>
+<span id="cb15-26"><a href="#cb15-26" aria-hidden="true" tabindex="-1"></a>        sub_df<span class="ot">&lt;-</span><span class="fu">as.data.frame</span>(<span class="fu">lapply</span>(sub_df, as.numeric))</span>
+<span id="cb15-27"><a href="#cb15-27" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb15-28"><a href="#cb15-28" aria-hidden="true" tabindex="-1"></a>        mean<span class="ot">&lt;-</span><span class="fu">mean</span>(<span class="fu">as.numeric</span>(sub_df<span class="sc">$</span>value), <span class="at">na.rm =</span> T)</span>
+<span id="cb15-29"><a href="#cb15-29" aria-hidden="true" tabindex="-1"></a>        sd<span class="ot">&lt;-</span><span class="fu">sd</span>(<span class="fu">as.numeric</span>(sub_df<span class="sc">$</span>value), <span class="at">na.rm =</span> T)</span>
+<span id="cb15-30"><a href="#cb15-30" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb15-31"><a href="#cb15-31" aria-hidden="true" tabindex="-1"></a>        sub_df<span class="sc">$</span>valence[sub_df<span class="sc">$</span>value<span class="sc">&gt;=</span>mean]<span class="ot">&lt;-</span><span class="st">"pos"</span></span>
+<span id="cb15-32"><a href="#cb15-32" aria-hidden="true" tabindex="-1"></a>        sub_df<span class="sc">$</span>valence[sub_df<span class="sc">$</span>value<span class="sc">&lt;</span> mean]<span class="ot">&lt;-</span><span class="st">"neg"</span></span>
+<span id="cb15-33"><a href="#cb15-33" aria-hidden="true" tabindex="-1"></a>        sub_df<span class="sc">$</span>min <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(sub_df<span class="sc">$</span>value <span class="sc">&gt;=</span> mean, mean, sub_df<span class="sc">$</span>value)</span>
+<span id="cb15-34"><a href="#cb15-34" aria-hidden="true" tabindex="-1"></a>        sub_df<span class="sc">$</span>max <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(sub_df<span class="sc">$</span>value <span class="sc">&gt;=</span> mean, sub_df<span class="sc">$</span>value, mean)</span>
+<span id="cb15-35"><a href="#cb15-35" aria-hidden="true" tabindex="-1"></a>        sub_df<span class="sc">$</span>year <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(sub_df<span class="sc">$</span>year)</span>
+<span id="cb15-36"><a href="#cb15-36" aria-hidden="true" tabindex="-1"></a>        sub_df<span class="sc">$</span>subnm<span class="ot">&lt;-</span>ind[,i]</span>
+<span id="cb15-37"><a href="#cb15-37" aria-hidden="true" tabindex="-1"></a>        sub_list[[i]]<span class="ot">&lt;-</span>sub_df</span>
+<span id="cb15-38"><a href="#cb15-38" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb15-39"><a href="#cb15-39" aria-hidden="true" tabindex="-1"></a>      }</span>
+<span id="cb15-40"><a href="#cb15-40" aria-hidden="true" tabindex="-1"></a>      df_dat<span class="ot">&lt;-</span><span class="fu">do.call</span>(<span class="st">"rbind"</span>,sub_list)</span>
+<span id="cb15-41"><a href="#cb15-41" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb15-42"><a href="#cb15-42" aria-hidden="true" tabindex="-1"></a>  df_dat</span>
+<span id="cb15-43"><a href="#cb15-43" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb15-44"><a href="#cb15-44" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb15-45"><a href="#cb15-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-46"><a href="#cb15-46" aria-hidden="true" tabindex="-1"></a><span class="co">#Pos data set used for main plot</span></span>
+<span id="cb15-47"><a href="#cb15-47" aria-hidden="true" tabindex="-1"></a>pos_fn<span class="ot">&lt;-</span><span class="cf">function</span>(df_dat) {</span>
+<span id="cb15-48"><a href="#cb15-48" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(<span class="fu">ncol</span>(df_dat)<span class="sc">&lt;</span><span class="dv">6</span>){</span>
+<span id="cb15-49"><a href="#cb15-49" aria-hidden="true" tabindex="-1"></a>    mean<span class="ot">&lt;-</span><span class="fu">mean</span>(<span class="fu">as.numeric</span>(df_dat<span class="sc">$</span>value), <span class="at">na.rm =</span> T)</span>
+<span id="cb15-50"><a href="#cb15-50" aria-hidden="true" tabindex="-1"></a>    sd<span class="ot">&lt;-</span><span class="fu">sd</span>(<span class="fu">as.numeric</span>(df_dat<span class="sc">$</span>value), <span class="at">na.rm =</span> T)</span>
+<span id="cb15-51"><a href="#cb15-51" aria-hidden="true" tabindex="-1"></a>    pos<span class="ot">&lt;-</span>df_dat</span>
+<span id="cb15-52"><a href="#cb15-52" aria-hidden="true" tabindex="-1"></a>    pos<span class="sc">$</span>value<span class="ot">&lt;-</span><span class="fu">ifelse</span>(pos<span class="sc">$</span>valence <span class="sc">==</span> <span class="st">"pos"</span>,pos<span class="sc">$</span>value, mean)</span>
+<span id="cb15-53"><a href="#cb15-53" aria-hidden="true" tabindex="-1"></a>    pos} <span class="cf">else</span> {</span>
+<span id="cb15-54"><a href="#cb15-54" aria-hidden="true" tabindex="-1"></a>      sub_list<span class="ot">&lt;-</span><span class="fu">list</span>()</span>
+<span id="cb15-55"><a href="#cb15-55" aria-hidden="true" tabindex="-1"></a>      subs<span class="ot">&lt;-</span><span class="fu">unique</span>(df_dat<span class="sc">$</span>subnm)</span>
+<span id="cb15-56"><a href="#cb15-56" aria-hidden="true" tabindex="-1"></a>      <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(subs)){</span>
+<span id="cb15-57"><a href="#cb15-57" aria-hidden="true" tabindex="-1"></a>        sub_df<span class="ot">&lt;-</span>df_dat[df_dat<span class="sc">$</span>subnm<span class="sc">==</span>subs[i],]</span>
+<span id="cb15-58"><a href="#cb15-58" aria-hidden="true" tabindex="-1"></a>        mean<span class="ot">&lt;-</span><span class="fu">mean</span>(<span class="fu">as.numeric</span>(sub_df<span class="sc">$</span>value), <span class="at">na.rm =</span> T)</span>
+<span id="cb15-59"><a href="#cb15-59" aria-hidden="true" tabindex="-1"></a>        sd<span class="ot">&lt;-</span><span class="fu">sd</span>(<span class="fu">as.numeric</span>(sub_df<span class="sc">$</span>value), <span class="at">na.rm =</span> T)</span>
+<span id="cb15-60"><a href="#cb15-60" aria-hidden="true" tabindex="-1"></a>        pos<span class="ot">&lt;-</span>sub_df</span>
+<span id="cb15-61"><a href="#cb15-61" aria-hidden="true" tabindex="-1"></a>        pos<span class="sc">$</span>value<span class="ot">&lt;-</span><span class="fu">ifelse</span>(pos<span class="sc">$</span>valence <span class="sc">==</span> <span class="st">"pos"</span>,pos<span class="sc">$</span>value, mean)</span>
+<span id="cb15-62"><a href="#cb15-62" aria-hidden="true" tabindex="-1"></a>        pos<span class="sc">$</span>subnm<span class="ot">&lt;-</span>subs[i]</span>
+<span id="cb15-63"><a href="#cb15-63" aria-hidden="true" tabindex="-1"></a>        pos<span class="sc">$</span>mean<span class="ot">&lt;-</span>mean</span>
+<span id="cb15-64"><a href="#cb15-64" aria-hidden="true" tabindex="-1"></a>        pos<span class="sc">$</span>sd<span class="ot">&lt;-</span>sd</span>
+<span id="cb15-65"><a href="#cb15-65" aria-hidden="true" tabindex="-1"></a>        sub_list[[i]]<span class="ot">&lt;-</span>pos</span>
+<span id="cb15-66"><a href="#cb15-66" aria-hidden="true" tabindex="-1"></a>      }</span>
+<span id="cb15-67"><a href="#cb15-67" aria-hidden="true" tabindex="-1"></a>      pos<span class="ot">&lt;-</span><span class="fu">do.call</span>(<span class="st">"rbind"</span>,sub_list)</span>
+<span id="cb15-68"><a href="#cb15-68" aria-hidden="true" tabindex="-1"></a>      pos</span>
+<span id="cb15-69"><a href="#cb15-69" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb15-70"><a href="#cb15-70" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb15-71"><a href="#cb15-71" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-72"><a href="#cb15-72" aria-hidden="true" tabindex="-1"></a><span class="co">#Neg data set used for main plot</span></span>
+<span id="cb15-73"><a href="#cb15-73" aria-hidden="true" tabindex="-1"></a>neg_fn<span class="ot">&lt;-</span><span class="cf">function</span>(df_dat) {</span>
+<span id="cb15-74"><a href="#cb15-74" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(<span class="fu">ncol</span>(df_dat)<span class="sc">&lt;</span><span class="dv">6</span>){</span>
+<span id="cb15-75"><a href="#cb15-75" aria-hidden="true" tabindex="-1"></a>    mean<span class="ot">&lt;-</span><span class="fu">mean</span>(<span class="fu">as.numeric</span>(df_dat<span class="sc">$</span>value), <span class="at">na.rm =</span> T)</span>
+<span id="cb15-76"><a href="#cb15-76" aria-hidden="true" tabindex="-1"></a>    sd<span class="ot">&lt;-</span><span class="fu">sd</span>(<span class="fu">as.numeric</span>(df_dat<span class="sc">$</span>value), <span class="at">na.rm =</span> T)</span>
+<span id="cb15-77"><a href="#cb15-77" aria-hidden="true" tabindex="-1"></a>    neg<span class="ot">&lt;-</span>df_dat</span>
+<span id="cb15-78"><a href="#cb15-78" aria-hidden="true" tabindex="-1"></a>    neg<span class="sc">$</span>value<span class="ot">&lt;-</span><span class="fu">ifelse</span>(neg<span class="sc">$</span>valence <span class="sc">==</span> <span class="st">"neg"</span>,neg<span class="sc">$</span>value, mean)</span>
+<span id="cb15-79"><a href="#cb15-79" aria-hidden="true" tabindex="-1"></a>    neg} <span class="cf">else</span> {</span>
+<span id="cb15-80"><a href="#cb15-80" aria-hidden="true" tabindex="-1"></a>      sub_list<span class="ot">&lt;-</span><span class="fu">list</span>()</span>
+<span id="cb15-81"><a href="#cb15-81" aria-hidden="true" tabindex="-1"></a>      subs<span class="ot">&lt;-</span><span class="fu">unique</span>(df_dat<span class="sc">$</span>subnm)</span>
+<span id="cb15-82"><a href="#cb15-82" aria-hidden="true" tabindex="-1"></a>      <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(subs)){</span>
+<span id="cb15-83"><a href="#cb15-83" aria-hidden="true" tabindex="-1"></a>        sub_df<span class="ot">&lt;-</span>df_dat[df_dat<span class="sc">$</span>subnm<span class="sc">==</span>subs[i],]</span>
+<span id="cb15-84"><a href="#cb15-84" aria-hidden="true" tabindex="-1"></a>        mean<span class="ot">&lt;-</span><span class="fu">mean</span>(<span class="fu">as.numeric</span>(sub_df<span class="sc">$</span>value), <span class="at">na.rm =</span> T)</span>
+<span id="cb15-85"><a href="#cb15-85" aria-hidden="true" tabindex="-1"></a>        sd<span class="ot">&lt;-</span><span class="fu">sd</span>(<span class="fu">as.numeric</span>(sub_df<span class="sc">$</span>value), <span class="at">na.rm =</span> T)</span>
+<span id="cb15-86"><a href="#cb15-86" aria-hidden="true" tabindex="-1"></a>        neg<span class="ot">&lt;-</span>sub_df</span>
+<span id="cb15-87"><a href="#cb15-87" aria-hidden="true" tabindex="-1"></a>        neg<span class="sc">$</span>value<span class="ot">&lt;-</span><span class="fu">ifelse</span>(neg<span class="sc">$</span>valence <span class="sc">==</span> <span class="st">"neg"</span>,neg<span class="sc">$</span>value, mean)</span>
+<span id="cb15-88"><a href="#cb15-88" aria-hidden="true" tabindex="-1"></a>        neg<span class="sc">$</span>subnm<span class="ot">&lt;-</span>subs[i]</span>
+<span id="cb15-89"><a href="#cb15-89" aria-hidden="true" tabindex="-1"></a>        neg<span class="sc">$</span>mean<span class="ot">&lt;-</span>mean</span>
+<span id="cb15-90"><a href="#cb15-90" aria-hidden="true" tabindex="-1"></a>        neg<span class="sc">$</span>sd<span class="ot">&lt;-</span>sd</span>
+<span id="cb15-91"><a href="#cb15-91" aria-hidden="true" tabindex="-1"></a>        sub_list[[i]]<span class="ot">&lt;-</span>neg</span>
+<span id="cb15-92"><a href="#cb15-92" aria-hidden="true" tabindex="-1"></a>      }</span>
+<span id="cb15-93"><a href="#cb15-93" aria-hidden="true" tabindex="-1"></a>      neg<span class="ot">&lt;-</span><span class="fu">do.call</span>(<span class="st">"rbind"</span>,sub_list)</span>
+<span id="cb15-94"><a href="#cb15-94" aria-hidden="true" tabindex="-1"></a>      neg</span>
+<span id="cb15-95"><a href="#cb15-95" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb15-96"><a href="#cb15-96" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb15-97"><a href="#cb15-97" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-98"><a href="#cb15-98" aria-hidden="true" tabindex="-1"></a><span class="co">#Independent values used throughout</span></span>
+<span id="cb15-99"><a href="#cb15-99" aria-hidden="true" tabindex="-1"></a>val_fn<span class="ot">&lt;-</span><span class="cf">function</span>(df_dat) {</span>
+<span id="cb15-100"><a href="#cb15-100" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(<span class="fu">ncol</span>(df_dat)<span class="sc">&lt;</span><span class="dv">6</span>){</span>
+<span id="cb15-101"><a href="#cb15-101" aria-hidden="true" tabindex="-1"></a>    mean<span class="ot">&lt;-</span><span class="fu">mean</span>(<span class="fu">as.numeric</span>(df_dat<span class="sc">$</span>value), <span class="at">na.rm =</span> T)</span>
+<span id="cb15-102"><a href="#cb15-102" aria-hidden="true" tabindex="-1"></a>    sd<span class="ot">&lt;-</span><span class="fu">sd</span>(<span class="fu">as.numeric</span>(df_dat<span class="sc">$</span>value), <span class="at">na.rm =</span> T)</span>
+<span id="cb15-103"><a href="#cb15-103" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb15-104"><a href="#cb15-104" aria-hidden="true" tabindex="-1"></a>    <span class="co">#Trend Analysis</span></span>
+<span id="cb15-105"><a href="#cb15-105" aria-hidden="true" tabindex="-1"></a>    last5<span class="ot">&lt;-</span>df_dat[df_dat<span class="sc">$</span>year <span class="sc">&gt;</span> <span class="fu">max</span>(df_dat<span class="sc">$</span>year)<span class="sc">-</span><span class="dv">5</span>,]</span>
+<span id="cb15-106"><a href="#cb15-106" aria-hidden="true" tabindex="-1"></a>    <span class="co">#Mean Trend</span></span>
+<span id="cb15-107"><a href="#cb15-107" aria-hidden="true" tabindex="-1"></a>    last5_mean<span class="ot">&lt;-</span><span class="fu">mean</span>(last5<span class="sc">$</span>value) <span class="co"># mean value last 5 years</span></span>
+<span id="cb15-108"><a href="#cb15-108" aria-hidden="true" tabindex="-1"></a>    mean_tr<span class="ot">&lt;-</span><span class="fu">if_else</span>(last5_mean<span class="sc">&gt;</span>mean<span class="sc">+</span>sd, <span class="st">"ptPlus"</span>, <span class="fu">if_else</span>(last5_mean<span class="sc">&lt;</span>mean<span class="sc">-</span>sd, <span class="st">"ptMinus"</span>,<span class="st">"ptSolid"</span>)) <span class="co">#qualify mean trend</span></span>
+<span id="cb15-109"><a href="#cb15-109" aria-hidden="true" tabindex="-1"></a>    mean_sym<span class="ot">&lt;-</span><span class="fu">if_else</span>(last5_mean<span class="sc">&gt;</span>mean<span class="sc">+</span>sd, <span class="st">"+"</span>, <span class="fu">if_else</span>(last5_mean<span class="sc">&lt;</span>mean<span class="sc">-</span>sd, <span class="st">"-"</span>,<span class="st">"●"</span>)) <span class="co">#qualify mean trend</span></span>
+<span id="cb15-110"><a href="#cb15-110" aria-hidden="true" tabindex="-1"></a>    mean_word<span class="ot">&lt;-</span><span class="fu">if_else</span>(last5_mean<span class="sc">&gt;</span>mean<span class="sc">+</span>sd, <span class="st">"greater"</span>, <span class="fu">if_else</span>(last5_mean<span class="sc">&lt;</span>mean<span class="sc">-</span>sd, <span class="st">"below"</span>,<span class="st">"within"</span>)) <span class="co">#qualify mean trend</span></span>
+<span id="cb15-111"><a href="#cb15-111" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb15-112"><a href="#cb15-112" aria-hidden="true" tabindex="-1"></a>    <span class="co">#Slope Trend</span></span>
+<span id="cb15-113"><a href="#cb15-113" aria-hidden="true" tabindex="-1"></a>    lmout<span class="ot">&lt;-</span><span class="fu">summary</span>(<span class="fu">lm</span>(last5<span class="sc">$</span>value<span class="sc">~</span>last5<span class="sc">$</span>year))</span>
+<span id="cb15-114"><a href="#cb15-114" aria-hidden="true" tabindex="-1"></a>    last5_slope<span class="ot">&lt;-</span><span class="fu">coef</span>(lmout)[<span class="dv">2</span>,<span class="dv">1</span>] <span class="sc">*</span> <span class="dv">5</span> <span class="co">#multiply by years in the trend (slope per year * number of years=rise over 5 years)</span></span>
+<span id="cb15-115"><a href="#cb15-115" aria-hidden="true" tabindex="-1"></a>    slope_tr<span class="ot">&lt;-</span><span class="fu">if_else</span>(last5_slope<span class="sc">&gt;</span>sd, <span class="st">"arrowUp"</span>, <span class="fu">if_else</span>(last5_slope<span class="sc">&lt;</span> <span class="fu">c</span>(<span class="sc">-</span>sd), <span class="st">"arrowDown"</span>,<span class="st">"arrowRight"</span>))</span>
+<span id="cb15-116"><a href="#cb15-116" aria-hidden="true" tabindex="-1"></a>    slope_sym<span class="ot">&lt;-</span><span class="fu">if_else</span>(last5_slope<span class="sc">&gt;</span>sd, <span class="st">"↑"</span>, <span class="fu">if_else</span>(last5_slope<span class="sc">&lt;</span> <span class="fu">c</span>(<span class="sc">-</span>sd), <span class="st">"↓"</span>,<span class="st">"→"</span>))</span>
+<span id="cb15-117"><a href="#cb15-117" aria-hidden="true" tabindex="-1"></a>    slope_word<span class="ot">&lt;-</span><span class="fu">if_else</span>(last5_slope<span class="sc">&gt;</span>sd, <span class="st">"an increasing"</span>, <span class="fu">if_else</span>(last5_slope<span class="sc">&lt;</span> <span class="fu">c</span>(<span class="sc">-</span>sd), <span class="st">"a decreasing"</span>,<span class="st">"a stable"</span>))</span>
+<span id="cb15-118"><a href="#cb15-118" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb15-119"><a href="#cb15-119" aria-hidden="true" tabindex="-1"></a>    <span class="co">#Dataframe</span></span>
+<span id="cb15-120"><a href="#cb15-120" aria-hidden="true" tabindex="-1"></a>    vals<span class="ot">&lt;-</span><span class="fu">data.frame</span>(<span class="at">mean=</span>mean,</span>
+<span id="cb15-121"><a href="#cb15-121" aria-hidden="true" tabindex="-1"></a>                     <span class="at">sd=</span>sd,</span>
+<span id="cb15-122"><a href="#cb15-122" aria-hidden="true" tabindex="-1"></a>                     <span class="at">mean_tr=</span>mean_tr,</span>
+<span id="cb15-123"><a href="#cb15-123" aria-hidden="true" tabindex="-1"></a>                     <span class="at">slope_tr=</span>slope_tr,</span>
+<span id="cb15-124"><a href="#cb15-124" aria-hidden="true" tabindex="-1"></a>                     <span class="at">mean_sym=</span>mean_sym,</span>
+<span id="cb15-125"><a href="#cb15-125" aria-hidden="true" tabindex="-1"></a>                     <span class="at">slope_sym=</span>slope_sym,</span>
+<span id="cb15-126"><a href="#cb15-126" aria-hidden="true" tabindex="-1"></a>                     <span class="at">mean_word=</span>mean_word,</span>
+<span id="cb15-127"><a href="#cb15-127" aria-hidden="true" tabindex="-1"></a>                     <span class="at">slope_word=</span>slope_word)</span>
+<span id="cb15-128"><a href="#cb15-128" aria-hidden="true" tabindex="-1"></a>    vals} <span class="cf">else</span> {</span>
+<span id="cb15-129"><a href="#cb15-129" aria-hidden="true" tabindex="-1"></a>      sub_list<span class="ot">&lt;-</span><span class="fu">list</span>()</span>
+<span id="cb15-130"><a href="#cb15-130" aria-hidden="true" tabindex="-1"></a>      subs<span class="ot">&lt;-</span><span class="fu">unique</span>(df_dat<span class="sc">$</span>subnm)</span>
+<span id="cb15-131"><a href="#cb15-131" aria-hidden="true" tabindex="-1"></a>      <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(subs)){</span>
+<span id="cb15-132"><a href="#cb15-132" aria-hidden="true" tabindex="-1"></a>        sub_df<span class="ot">&lt;-</span>df_dat[df_dat<span class="sc">$</span>subnm<span class="sc">==</span>subs[i],]</span>
+<span id="cb15-133"><a href="#cb15-133" aria-hidden="true" tabindex="-1"></a>        minyear<span class="ot">&lt;-</span><span class="fu">min</span>(<span class="fu">na.omit</span>(sub_df)<span class="sc">$</span>year)</span>
+<span id="cb15-134"><a href="#cb15-134" aria-hidden="true" tabindex="-1"></a>        maxyear<span class="ot">&lt;-</span><span class="fu">max</span>(<span class="fu">na.omit</span>(sub_df)<span class="sc">$</span>year)</span>
+<span id="cb15-135"><a href="#cb15-135" aria-hidden="true" tabindex="-1"></a>        allminyear<span class="ot">&lt;-</span><span class="fu">min</span>(df_dat<span class="sc">$</span>year)</span>
+<span id="cb15-136"><a href="#cb15-136" aria-hidden="true" tabindex="-1"></a>        allmaxyear<span class="ot">&lt;-</span><span class="fu">max</span>(df_dat<span class="sc">$</span>year)</span>
+<span id="cb15-137"><a href="#cb15-137" aria-hidden="true" tabindex="-1"></a>        mean<span class="ot">&lt;-</span><span class="fu">mean</span>(<span class="fu">as.numeric</span>(sub_df<span class="sc">$</span>value), <span class="at">na.rm =</span> T)</span>
+<span id="cb15-138"><a href="#cb15-138" aria-hidden="true" tabindex="-1"></a>        sd<span class="ot">&lt;-</span><span class="fu">sd</span>(<span class="fu">as.numeric</span>(sub_df<span class="sc">$</span>value), <span class="at">na.rm =</span> T)</span>
+<span id="cb15-139"><a href="#cb15-139" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb15-140"><a href="#cb15-140" aria-hidden="true" tabindex="-1"></a>        <span class="co">#Trend Analysis</span></span>
+<span id="cb15-141"><a href="#cb15-141" aria-hidden="true" tabindex="-1"></a>        last5<span class="ot">&lt;-</span>sub_df[sub_df<span class="sc">$</span>year <span class="sc">&gt;</span> <span class="fu">max</span>(sub_df<span class="sc">$</span>year)<span class="sc">-</span><span class="dv">5</span>,]</span>
+<span id="cb15-142"><a href="#cb15-142" aria-hidden="true" tabindex="-1"></a>        <span class="co">#Mean Trend</span></span>
+<span id="cb15-143"><a href="#cb15-143" aria-hidden="true" tabindex="-1"></a>        last5_mean<span class="ot">&lt;-</span><span class="fu">mean</span>(last5<span class="sc">$</span>value) <span class="co"># mean value last 5 years</span></span>
+<span id="cb15-144"><a href="#cb15-144" aria-hidden="true" tabindex="-1"></a>        mean_tr<span class="ot">&lt;-</span><span class="fu">if_else</span>(last5_mean<span class="sc">&gt;</span>mean<span class="sc">+</span>sd, <span class="st">"ptPlus"</span>, <span class="fu">if_else</span>(last5_mean<span class="sc">&lt;</span>mean<span class="sc">-</span>sd, <span class="st">"ptMinus"</span>,<span class="st">"ptSolid"</span>)) <span class="co">#qualify mean trend</span></span>
+<span id="cb15-145"><a href="#cb15-145" aria-hidden="true" tabindex="-1"></a>        mean_sym<span class="ot">&lt;-</span><span class="fu">if_else</span>(last5_mean<span class="sc">&gt;</span>mean<span class="sc">+</span>sd, <span class="st">"+"</span>, <span class="fu">if_else</span>(last5_mean<span class="sc">&lt;</span>mean<span class="sc">-</span>sd, <span class="st">"-"</span>,<span class="st">"●"</span>)) <span class="co">#qualify mean trend</span></span>
+<span id="cb15-146"><a href="#cb15-146" aria-hidden="true" tabindex="-1"></a>        mean_word<span class="ot">&lt;-</span><span class="fu">if_else</span>(last5_mean<span class="sc">&gt;</span>mean<span class="sc">+</span>sd, <span class="st">"greater"</span>, <span class="fu">if_else</span>(last5_mean<span class="sc">&lt;</span>mean<span class="sc">-</span>sd, <span class="st">"below"</span>,<span class="st">"within"</span>)) <span class="co">#qualify mean trend</span></span>
+<span id="cb15-147"><a href="#cb15-147" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb15-148"><a href="#cb15-148" aria-hidden="true" tabindex="-1"></a>        <span class="co">#Slope Trend</span></span>
+<span id="cb15-149"><a href="#cb15-149" aria-hidden="true" tabindex="-1"></a>        lmout<span class="ot">&lt;-</span><span class="fu">summary</span>(<span class="fu">lm</span>(last5<span class="sc">$</span>value<span class="sc">~</span>last5<span class="sc">$</span>year))</span>
+<span id="cb15-150"><a href="#cb15-150" aria-hidden="true" tabindex="-1"></a>        last5_slope<span class="ot">&lt;-</span><span class="fu">coef</span>(lmout)[<span class="dv">2</span>,<span class="dv">1</span>] <span class="sc">*</span> <span class="dv">5</span> <span class="co">#multiply by years in the trend (slope per year * number of years=rise over 5 years)</span></span>
+<span id="cb15-151"><a href="#cb15-151" aria-hidden="true" tabindex="-1"></a>        slope_tr<span class="ot">&lt;-</span><span class="fu">if_else</span>(last5_slope<span class="sc">&gt;</span>sd, <span class="st">"arrowUp"</span>, <span class="fu">if_else</span>(last5_slope<span class="sc">&lt;</span> <span class="fu">c</span>(<span class="sc">-</span>sd), <span class="st">"arrowDown"</span>,<span class="st">"arrowRight"</span>))</span>
+<span id="cb15-152"><a href="#cb15-152" aria-hidden="true" tabindex="-1"></a>        slope_sym<span class="ot">&lt;-</span><span class="fu">if_else</span>(last5_slope<span class="sc">&gt;</span>sd, <span class="st">"↑"</span>, <span class="fu">if_else</span>(last5_slope<span class="sc">&lt;</span> <span class="fu">c</span>(<span class="sc">-</span>sd), <span class="st">"↓"</span>,<span class="st">"→"</span>))</span>
+<span id="cb15-153"><a href="#cb15-153" aria-hidden="true" tabindex="-1"></a>        slope_word<span class="ot">&lt;-</span><span class="fu">if_else</span>(last5_slope<span class="sc">&gt;</span>sd, <span class="st">"an increasing"</span>, <span class="fu">if_else</span>(last5_slope<span class="sc">&lt;</span> <span class="fu">c</span>(<span class="sc">-</span>sd), <span class="st">"a decreasing"</span>,<span class="st">"a stable"</span>))</span>
+<span id="cb15-154"><a href="#cb15-154" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb15-155"><a href="#cb15-155" aria-hidden="true" tabindex="-1"></a>        vals<span class="ot">&lt;-</span><span class="fu">data.frame</span>(<span class="at">allminyear=</span>allminyear,</span>
+<span id="cb15-156"><a href="#cb15-156" aria-hidden="true" tabindex="-1"></a>                         <span class="at">allmaxyear=</span>allmaxyear,</span>
+<span id="cb15-157"><a href="#cb15-157" aria-hidden="true" tabindex="-1"></a>                         <span class="at">minyear=</span>minyear,</span>
+<span id="cb15-158"><a href="#cb15-158" aria-hidden="true" tabindex="-1"></a>                         <span class="at">maxyear=</span>maxyear,</span>
+<span id="cb15-159"><a href="#cb15-159" aria-hidden="true" tabindex="-1"></a>                         <span class="at">mean=</span>mean,</span>
+<span id="cb15-160"><a href="#cb15-160" aria-hidden="true" tabindex="-1"></a>                         <span class="at">sd=</span>sd,</span>
+<span id="cb15-161"><a href="#cb15-161" aria-hidden="true" tabindex="-1"></a>                         <span class="at">mean_tr=</span>mean_tr,</span>
+<span id="cb15-162"><a href="#cb15-162" aria-hidden="true" tabindex="-1"></a>                         <span class="at">slope_tr=</span>slope_tr,</span>
+<span id="cb15-163"><a href="#cb15-163" aria-hidden="true" tabindex="-1"></a>                         <span class="at">mean_sym=</span>mean_sym,</span>
+<span id="cb15-164"><a href="#cb15-164" aria-hidden="true" tabindex="-1"></a>                         <span class="at">slope_sym=</span>slope_sym,</span>
+<span id="cb15-165"><a href="#cb15-165" aria-hidden="true" tabindex="-1"></a>                         <span class="at">mean_word=</span>mean_word,</span>
+<span id="cb15-166"><a href="#cb15-166" aria-hidden="true" tabindex="-1"></a>                         <span class="at">slope_word=</span>slope_word,</span>
+<span id="cb15-167"><a href="#cb15-167" aria-hidden="true" tabindex="-1"></a>                         <span class="at">subnm=</span>subs[i])</span>
+<span id="cb15-168"><a href="#cb15-168" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb15-169"><a href="#cb15-169" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb15-170"><a href="#cb15-170" aria-hidden="true" tabindex="-1"></a>        sub_list[[i]]<span class="ot">&lt;-</span>vals</span>
+<span id="cb15-171"><a href="#cb15-171" aria-hidden="true" tabindex="-1"></a>      }</span>
+<span id="cb15-172"><a href="#cb15-172" aria-hidden="true" tabindex="-1"></a>      vals<span class="ot">&lt;-</span><span class="fu">do.call</span>(<span class="st">"rbind"</span>,sub_list)</span>
+<span id="cb15-173"><a href="#cb15-173" aria-hidden="true" tabindex="-1"></a>      vals</span>
+<span id="cb15-174"><a href="#cb15-174" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb15-175"><a href="#cb15-175" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb15-176"><a href="#cb15-176" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-177"><a href="#cb15-177" aria-hidden="true" tabindex="-1"></a><span class="co">#Main Plot</span></span>
+<span id="cb15-178"><a href="#cb15-178" aria-hidden="true" tabindex="-1"></a>plot_fn<span class="ot">&lt;-</span><span class="cf">function</span>(df_dat, pos, neg, df_lab, val_df) {</span>
+<span id="cb15-179"><a href="#cb15-179" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb15-180"><a href="#cb15-180" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb15-181"><a href="#cb15-181" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">ncol</span>(df_dat)<span class="sc">&lt;</span><span class="fl">5.5</span>){</span>
+<span id="cb15-182"><a href="#cb15-182" aria-hidden="true" tabindex="-1"></a>    <span class="co">#single plot</span></span>
+<span id="cb15-183"><a href="#cb15-183" aria-hidden="true" tabindex="-1"></a>    plot_main<span class="ot">&lt;-</span><span class="fu">ggplot</span>(<span class="at">data=</span>df_dat, <span class="fu">aes</span>(<span class="at">x=</span>year, <span class="at">y=</span>value))<span class="sc">+</span></span>
+<span id="cb15-184"><a href="#cb15-184" aria-hidden="true" tabindex="-1"></a>      <span class="fu">geom_ribbon</span>(<span class="at">data=</span>pos, <span class="fu">aes</span>(<span class="at">group=</span><span class="dv">1</span>,<span class="at">ymax=</span>max, <span class="at">ymin=</span>val_df<span class="sc">$</span>mean),<span class="at">fill=</span><span class="st">"#7FFF7F"</span>)<span class="sc">+</span></span>
+<span id="cb15-185"><a href="#cb15-185" aria-hidden="true" tabindex="-1"></a>      <span class="fu">geom_ribbon</span>(<span class="at">data=</span>neg, <span class="fu">aes</span>(<span class="at">group=</span><span class="dv">1</span>,<span class="at">ymax=</span>val_df<span class="sc">$</span>mean, <span class="at">ymin=</span>min), <span class="at">fill=</span><span class="st">"#FF7F7F"</span>)<span class="sc">+</span></span>
+<span id="cb15-186"><a href="#cb15-186" aria-hidden="true" tabindex="-1"></a>      <span class="fu">geom_rect</span>(<span class="fu">aes</span>(<span class="at">xmin=</span><span class="fu">min</span>(df_dat<span class="sc">$</span>year),<span class="at">xmax=</span><span class="fu">max</span>(df_dat<span class="sc">$</span>year),<span class="at">ymin=</span>val_df<span class="sc">$</span>mean<span class="sc">-</span>val_df<span class="sc">$</span>sd, <span class="at">ymax=</span>val_df<span class="sc">$</span>mean<span class="sc">+</span>val_df<span class="sc">$</span>sd), <span class="at">fill=</span><span class="st">"white"</span>)<span class="sc">+</span></span>
+<span id="cb15-187"><a href="#cb15-187" aria-hidden="true" tabindex="-1"></a>      <span class="fu">geom_hline</span>(<span class="at">yintercept=</span>val_df<span class="sc">$</span>mean, <span class="at">lty=</span><span class="st">"dashed"</span>)<span class="sc">+</span></span>
+<span id="cb15-188"><a href="#cb15-188" aria-hidden="true" tabindex="-1"></a>      <span class="fu">geom_hline</span>(<span class="at">yintercept=</span>val_df<span class="sc">$</span>mean<span class="sc">+</span>val_df<span class="sc">$</span>sd)<span class="sc">+</span></span>
+<span id="cb15-189"><a href="#cb15-189" aria-hidden="true" tabindex="-1"></a>      <span class="fu">geom_hline</span>(<span class="at">yintercept=</span>val_df<span class="sc">$</span>mean<span class="sc">-</span>val_df<span class="sc">$</span>sd)<span class="sc">+</span></span>
+<span id="cb15-190"><a href="#cb15-190" aria-hidden="true" tabindex="-1"></a>      <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">group=</span><span class="dv">1</span>), <span class="at">lwd=</span><span class="dv">1</span>)<span class="sc">+</span></span>
+<span id="cb15-191"><a href="#cb15-191" aria-hidden="true" tabindex="-1"></a>      <span class="fu">labs</span>(<span class="at">x=</span><span class="st">"Year"</span>, <span class="at">y=</span>df_lab[<span class="dv">2</span>,<span class="dv">2</span>], <span class="at">title =</span> df_lab[<span class="dv">1</span>,<span class="dv">2</span>])<span class="sc">+</span></span>
+<span id="cb15-192"><a href="#cb15-192" aria-hidden="true" tabindex="-1"></a>      <span class="fu">theme_bw</span>() <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">title =</span> <span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">14</span>, <span class="at">face =</span> <span class="st">"bold"</span>))</span>
+<span id="cb15-193"><a href="#cb15-193" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb15-194"><a href="#cb15-194" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (<span class="fu">max</span>(df_dat<span class="sc">$</span>year)<span class="sc">-</span><span class="fu">min</span>(df_dat<span class="sc">$</span>year)<span class="sc">&gt;</span><span class="dv">20</span>) {</span>
+<span id="cb15-195"><a href="#cb15-195" aria-hidden="true" tabindex="-1"></a>      plot_main<span class="ot">&lt;-</span>plot_main<span class="sc">+</span><span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="fu">seq</span>(<span class="fu">min</span>(df_dat<span class="sc">$</span>year),<span class="fu">max</span>(df_dat<span class="sc">$</span>year),<span class="dv">5</span>))</span>
+<span id="cb15-196"><a href="#cb15-196" aria-hidden="true" tabindex="-1"></a>    } <span class="cf">else</span> {</span>
+<span id="cb15-197"><a href="#cb15-197" aria-hidden="true" tabindex="-1"></a>      plot_main<span class="ot">&lt;-</span>plot_main<span class="sc">+</span><span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="fu">seq</span>(<span class="fu">min</span>(df_dat<span class="sc">$</span>year),<span class="fu">max</span>(df_dat<span class="sc">$</span>year),<span class="dv">2</span>))</span>
+<span id="cb15-198"><a href="#cb15-198" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb15-199"><a href="#cb15-199" aria-hidden="true" tabindex="-1"></a>    plot_main</span>
+<span id="cb15-200"><a href="#cb15-200" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb15-201"><a href="#cb15-201" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
+<span id="cb15-202"><a href="#cb15-202" aria-hidden="true" tabindex="-1"></a>    <span class="co">#facet plot</span></span>
+<span id="cb15-203"><a href="#cb15-203" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb15-204"><a href="#cb15-204" aria-hidden="true" tabindex="-1"></a>    plot_sec<span class="ot">&lt;-</span><span class="fu">ggplot</span>(<span class="at">data=</span>df_dat, <span class="fu">aes</span>(<span class="at">x=</span>year, <span class="at">y=</span>value))<span class="sc">+</span></span>
+<span id="cb15-205"><a href="#cb15-205" aria-hidden="true" tabindex="-1"></a>      <span class="fu">facet_wrap</span>(<span class="sc">~</span>subnm, <span class="at">ncol=</span><span class="dv">1</span>, <span class="at">scales =</span> <span class="st">"free_y"</span>)<span class="sc">+</span></span>
+<span id="cb15-206"><a href="#cb15-206" aria-hidden="true" tabindex="-1"></a>      <span class="fu">geom_ribbon</span>(<span class="at">data=</span>pos, <span class="fu">aes</span>(<span class="at">group=</span>subnm,<span class="at">ymax=</span>max, <span class="at">ymin=</span>mean),<span class="at">fill=</span><span class="st">"#7FFF7F"</span>)<span class="sc">+</span></span>
+<span id="cb15-207"><a href="#cb15-207" aria-hidden="true" tabindex="-1"></a>      <span class="fu">geom_ribbon</span>(<span class="at">data=</span>neg, <span class="fu">aes</span>(<span class="at">group=</span>subnm,<span class="at">ymax=</span>mean, <span class="at">ymin=</span>min), <span class="at">fill=</span><span class="st">"#FF7F7F"</span>)<span class="sc">+</span></span>
+<span id="cb15-208"><a href="#cb15-208" aria-hidden="true" tabindex="-1"></a>      <span class="fu">geom_rect</span>(<span class="at">data=</span><span class="fu">merge</span>(df_dat,val_df), <span class="fu">aes</span>(<span class="at">xmin=</span>allminyear,<span class="at">xmax=</span>allmaxyear,<span class="at">ymin=</span>mean<span class="sc">-</span>sd, <span class="at">ymax=</span>mean<span class="sc">+</span>sd), <span class="at">fill=</span><span class="st">"white"</span>)<span class="sc">+</span></span>
+<span id="cb15-209"><a href="#cb15-209" aria-hidden="true" tabindex="-1"></a>      <span class="fu">geom_hline</span>(<span class="fu">aes</span>(<span class="at">yintercept=</span>mean), <span class="at">lty=</span><span class="st">"dashed"</span>,<span class="at">data=</span>val_df)<span class="sc">+</span></span>
+<span id="cb15-210"><a href="#cb15-210" aria-hidden="true" tabindex="-1"></a>      <span class="fu">geom_hline</span>(<span class="fu">aes</span>(<span class="at">yintercept=</span>mean<span class="sc">+</span>sd),<span class="at">data=</span>val_df)<span class="sc">+</span></span>
+<span id="cb15-211"><a href="#cb15-211" aria-hidden="true" tabindex="-1"></a>      <span class="fu">geom_hline</span>(<span class="fu">aes</span>(<span class="at">yintercept=</span>mean<span class="sc">-</span>sd),<span class="at">data=</span>val_df)<span class="sc">+</span></span>
+<span id="cb15-212"><a href="#cb15-212" aria-hidden="true" tabindex="-1"></a>      <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">group=</span><span class="dv">1</span>), <span class="at">lwd=</span><span class="fl">0.75</span>)<span class="sc">+</span></span>
+<span id="cb15-213"><a href="#cb15-213" aria-hidden="true" tabindex="-1"></a>      <span class="fu">labs</span>(<span class="at">x=</span><span class="st">"Year"</span>, <span class="at">y=</span>df_lab[<span class="dv">2</span>,<span class="dv">2</span>], <span class="at">title =</span> df_lab[<span class="dv">1</span>,<span class="dv">2</span>])<span class="sc">+</span></span>
+<span id="cb15-214"><a href="#cb15-214" aria-hidden="true" tabindex="-1"></a>      <span class="fu">theme_bw</span>()<span class="sc">+</span><span class="fu">theme</span>(<span class="at">strip.background =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb15-215"><a href="#cb15-215" aria-hidden="true" tabindex="-1"></a>                       <span class="at">strip.text =</span> <span class="fu">element_text</span>(<span class="at">face=</span><span class="st">"bold"</span>),</span>
+<span id="cb15-216"><a href="#cb15-216" aria-hidden="true" tabindex="-1"></a>                       <span class="at">title =</span> <span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">14</span>, <span class="at">face =</span> <span class="st">"bold"</span>))</span>
+<span id="cb15-217"><a href="#cb15-217" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb15-218"><a href="#cb15-218" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (<span class="fu">max</span>(df_dat<span class="sc">$</span>year)<span class="sc">-</span><span class="fu">min</span>(df_dat<span class="sc">$</span>year)<span class="sc">&gt;</span><span class="dv">20</span>) {</span>
+<span id="cb15-219"><a href="#cb15-219" aria-hidden="true" tabindex="-1"></a>      plot_sec<span class="ot">&lt;-</span>plot_sec<span class="sc">+</span><span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="fu">seq</span>(<span class="fu">min</span>(df_dat<span class="sc">$</span>year),<span class="fu">max</span>(df_dat<span class="sc">$</span>year),<span class="dv">5</span>))</span>
+<span id="cb15-220"><a href="#cb15-220" aria-hidden="true" tabindex="-1"></a>    } <span class="cf">else</span> {</span>
+<span id="cb15-221"><a href="#cb15-221" aria-hidden="true" tabindex="-1"></a>      <span class="co"># plot_sec&lt;-plot_sec+scale_x_continuous(breaks = seq(min(df_dat$year),max(df_dat$year),2))</span></span>
+<span id="cb15-222"><a href="#cb15-222" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb15-223"><a href="#cb15-223" aria-hidden="true" tabindex="-1"></a>    plot_sec</span>
+<span id="cb15-224"><a href="#cb15-224" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb15-225"><a href="#cb15-225" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb15-226"><a href="#cb15-226" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Test Functions on Data</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>peli_df<span class="ot">&lt;-</span><span class="fu">df_dat_fn</span>(peli)</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>peli_pos<span class="ot">&lt;-</span><span class="fu">pos_fn</span>(peli_df)</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>peli_neg<span class="ot">&lt;-</span><span class="fu">neg_fn</span>(peli_df)</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>peli_lab<span class="ot">&lt;-</span>peli[<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>, <span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="fu">ncol</span>(peli))] <span class="co">#For example sake cutting to only col I need</span></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>peli_val<span class="ot">&lt;-</span><span class="fu">val_fn</span>(peli_df)</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>test<span class="ot">&lt;-</span><span class="fu">plot_fn</span>(peli_df, peli_pos, peli_neg, peli_lab, peli_val)</span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplotly</span>(test)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Use of `df_dat$year` is discouraged.
+ℹ Use `year` instead.
+Use of `df_dat$year` is discouraged.
+ℹ Use `year` instead.</code></pre>
+</div>
+<div class="cell-output-display">
+<div class="plotly html-widget html-fill-item" id="htmlwidget-d14c9cd41e9a5ae884a3" style="width:100%;height:464px;"></div>
+<script type="application/json" data-for="htmlwidget-d14c9cd41e9a5ae884a3">{"x":{"data":[{"x":[1971,1972,1973,1974,1975,1976,1977,1978,1979,1980,1981,1982,1983,1984,1985,1986,1987,1988,1989,1990,1991,1992,1993,1994,1995,1996,1997,1998,1999,2000,2001,2002,2003,2004,2005,2006,2007,2008,2009,2010,2010,2010,2009,2008,2007,2006,2005,2004,2003,2002,2001,2000,1999,1998,1997,1996,1995,1994,1993,1992,1991,1990,1989,1988,1987,1986,1985,1984,1983,1982,1981,1980,1979,1978,1977,1976,1975,1974,1973,1972,1971,1971],"y":[1072.4871794871794,1072.4871794871794,1072.4871794871794,1072.4871794871794,1072.4871794871794,1072.4871794871794,1072.4871794871794,1072.4871794871794,1072.4871794871794,1072.4871794871794,1072.4871794871794,1072.4871794871794,1072.4871794871794,1072.4871794871794,1072.4871794871794,1072.4871794871794,1072.4871794871794,1072.4871794871794,1072.4871794871794,1072.4871794871794,1072.4871794871794,1072.4871794871794,1072.4871794871794,1072.4871794871794,1072.4871794871794,1072.4871794871794,1072.4871794871794,1072.4871794871794,1072.4871794871794,1072.4871794871794,1072.4871794871794,1072.4871794871794,1072.4871794871794,1072.4871794871794,1072.4871794871794,1072.4871794871794,1072.4871794871794,1072.4871794871794,1072.4871794871794,1072.4871794871794,1072.4871794871794,3025,2185,3975,5075,2025,2800,3000,2300,2220,2250,1072.4871794871794,2150,1400,1200,1072.4871794871794,1072.4871794871794,1072.4871794871794,1072.4871794871794,1072.4871794871794,null,1072.4871794871794,1072.4871794871794,1072.4871794871794,1072.4871794871794,1072.4871794871794,1072.4871794871794,1072.4871794871794,1072.4871794871794,1072.4871794871794,1072.4871794871794,1072.4871794871794,1072.4871794871794,1072.4871794871794,1072.4871794871794,1072.4871794871794,1072.4871794871794,1072.4871794871794,1072.4871794871794,1072.4871794871794,1072.4871794871794,1072.4871794871794],"text":["year: 1971<br />value: 1072.487<br />max: 1072.487<br />val_df$mean: 1072.487","year: 1972<br />value: 1072.487<br />max: 1072.487<br />val_df$mean: 1072.487","year: 1973<br />value: 1072.487<br />max: 1072.487<br />val_df$mean: 1072.487","year: 1974<br />value: 1072.487<br />max: 1072.487<br />val_df$mean: 1072.487","year: 1975<br />value: 1072.487<br />max: 1072.487<br />val_df$mean: 1072.487","year: 1976<br />value: 1072.487<br />max: 1072.487<br />val_df$mean: 1072.487","year: 1977<br />value: 1072.487<br />max: 1072.487<br />val_df$mean: 1072.487","year: 1978<br />value: 1072.487<br />max: 1072.487<br />val_df$mean: 1072.487","year: 1979<br />value: 1072.487<br />max: 1072.487<br />val_df$mean: 1072.487","year: 1980<br />value: 1072.487<br />max: 1072.487<br />val_df$mean: 1072.487","year: 1981<br />value: 1072.487<br />max: 1072.487<br />val_df$mean: 1072.487","year: 1982<br />value: 1072.487<br />max: 1072.487<br />val_df$mean: 1072.487","year: 1983<br />value: 1072.487<br />max: 1072.487<br />val_df$mean: 1072.487","year: 1984<br />value: 1072.487<br />max: 1072.487<br />val_df$mean: 1072.487","year: 1985<br />value: 1072.487<br />max: 1072.487<br />val_df$mean: 1072.487","year: 1986<br />value: 1072.487<br />max: 1072.487<br />val_df$mean: 1072.487","year: 1987<br />value: 1072.487<br />max: 1072.487<br />val_df$mean: 1072.487","year: 1988<br />value: 1072.487<br />max: 1072.487<br />val_df$mean: 1072.487","year: 1989<br />value: 1072.487<br />max: 1072.487<br />val_df$mean: 1072.487","year: 1990<br />value: 1072.487<br />max: 1072.487<br />val_df$mean: 1072.487","year: 1991<br />value:       NA<br />max:       NA<br />val_df$mean: 1072.487","year: 1992<br />value: 1072.487<br />max: 1072.487<br />val_df$mean: 1072.487","year: 1993<br />value: 1072.487<br />max: 1072.487<br />val_df$mean: 1072.487","year: 1994<br />value: 1072.487<br />max: 1072.487<br />val_df$mean: 1072.487","year: 1995<br />value: 1072.487<br />max: 1072.487<br />val_df$mean: 1072.487","year: 1996<br />value: 1072.487<br />max: 1072.487<br />val_df$mean: 1072.487","year: 1997<br />value: 1200.000<br />max: 1200.000<br />val_df$mean: 1072.487","year: 1998<br />value: 1400.000<br />max: 1400.000<br />val_df$mean: 1072.487","year: 1999<br />value: 2150.000<br />max: 2150.000<br />val_df$mean: 1072.487","year: 2000<br />value: 1072.487<br />max: 1072.487<br />val_df$mean: 1072.487","year: 2001<br />value: 2250.000<br />max: 2250.000<br />val_df$mean: 1072.487","year: 2002<br />value: 2220.000<br />max: 2220.000<br />val_df$mean: 1072.487","year: 2003<br />value: 2300.000<br />max: 2300.000<br />val_df$mean: 1072.487","year: 2004<br />value: 3000.000<br />max: 3000.000<br />val_df$mean: 1072.487","year: 2005<br />value: 2800.000<br />max: 2800.000<br />val_df$mean: 1072.487","year: 2006<br />value: 2025.000<br />max: 2025.000<br />val_df$mean: 1072.487","year: 2007<br />value: 5075.000<br />max: 5075.000<br />val_df$mean: 1072.487","year: 2008<br />value: 3975.000<br />max: 3975.000<br />val_df$mean: 1072.487","year: 2009<br />value: 2185.000<br />max: 2185.000<br />val_df$mean: 1072.487","year: 2010<br />value: 3025.000<br />max: 3025.000<br />val_df$mean: 1072.487","year: 2010<br />value: 3025.000<br />max: 3025.000<br />val_df$mean: 1072.487","year: 2010<br />value: 3025.000<br />max: 3025.000<br />val_df$mean: 1072.487","year: 2009<br />value: 2185.000<br />max: 2185.000<br />val_df$mean: 1072.487","year: 2008<br />value: 3975.000<br />max: 3975.000<br />val_df$mean: 1072.487","year: 2007<br />value: 5075.000<br />max: 5075.000<br />val_df$mean: 1072.487","year: 2006<br />value: 2025.000<br />max: 2025.000<br />val_df$mean: 1072.487","year: 2005<br />value: 2800.000<br />max: 2800.000<br />val_df$mean: 1072.487","year: 2004<br />value: 3000.000<br />max: 3000.000<br />val_df$mean: 1072.487","year: 2003<br />value: 2300.000<br />max: 2300.000<br />val_df$mean: 1072.487","year: 2002<br />value: 2220.000<br />max: 2220.000<br />val_df$mean: 1072.487","year: 2001<br />value: 2250.000<br />max: 2250.000<br />val_df$mean: 1072.487","year: 2000<br />value: 1072.487<br />max: 1072.487<br />val_df$mean: 1072.487","year: 1999<br />value: 2150.000<br />max: 2150.000<br />val_df$mean: 1072.487","year: 1998<br />value: 1400.000<br />max: 1400.000<br />val_df$mean: 1072.487","year: 1997<br />value: 1200.000<br />max: 1200.000<br />val_df$mean: 1072.487","year: 1996<br />value: 1072.487<br />max: 1072.487<br />val_df$mean: 1072.487","year: 1995<br />value: 1072.487<br />max: 1072.487<br />val_df$mean: 1072.487","year: 1994<br />value: 1072.487<br />max: 1072.487<br />val_df$mean: 1072.487","year: 1993<br />value: 1072.487<br />max: 1072.487<br />val_df$mean: 1072.487","year: 1992<br />value: 1072.487<br />max: 1072.487<br />val_df$mean: 1072.487","year: 1991<br />value:       NA<br />max:       NA<br />val_df$mean: 1072.487","year: 1990<br />value: 1072.487<br />max: 1072.487<br />val_df$mean: 1072.487","year: 1989<br />value: 1072.487<br />max: 1072.487<br />val_df$mean: 1072.487","year: 1988<br />value: 1072.487<br />max: 1072.487<br />val_df$mean: 1072.487","year: 1987<br />value: 1072.487<br />max: 1072.487<br />val_df$mean: 1072.487","year: 1986<br />value: 1072.487<br />max: 1072.487<br />val_df$mean: 1072.487","year: 1985<br />value: 1072.487<br />max: 1072.487<br />val_df$mean: 1072.487","year: 1984<br />value: 1072.487<br />max: 1072.487<br />val_df$mean: 1072.487","year: 1983<br />value: 1072.487<br />max: 1072.487<br />val_df$mean: 1072.487","year: 1982<br />value: 1072.487<br />max: 1072.487<br />val_df$mean: 1072.487","year: 1981<br />value: 1072.487<br />max: 1072.487<br />val_df$mean: 1072.487","year: 1980<br />value: 1072.487<br />max: 1072.487<br />val_df$mean: 1072.487","year: 1979<br />value: 1072.487<br />max: 1072.487<br />val_df$mean: 1072.487","year: 1978<br />value: 1072.487<br />max: 1072.487<br />val_df$mean: 1072.487","year: 1977<br />value: 1072.487<br />max: 1072.487<br />val_df$mean: 1072.487","year: 1976<br />value: 1072.487<br />max: 1072.487<br />val_df$mean: 1072.487","year: 1975<br />value: 1072.487<br />max: 1072.487<br />val_df$mean: 1072.487","year: 1974<br />value: 1072.487<br />max: 1072.487<br />val_df$mean: 1072.487","year: 1973<br />value: 1072.487<br />max: 1072.487<br />val_df$mean: 1072.487","year: 1972<br />value: 1072.487<br />max: 1072.487<br />val_df$mean: 1072.487","year: 1971<br />value: 1072.487<br />max: 1072.487<br />val_df$mean: 1072.487","year: 1971<br />value: 1072.487<br />max: 1072.487<br />val_df$mean: 1072.487"],"type":"scatter","mode":"lines","line":{"width":1.8897637795275593,"color":"transparent","dash":"solid"},"fill":"toself","fillcolor":"rgba(127,255,127,1)","hoveron":"points","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[1971,1972,1973,1974,1975,1976,1977,1978,1979,1980,1981,1982,1983,1984,1985,1986,1987,1988,1989,1990,1991,1992,1993,1994,1995,1996,1997,1998,1999,2000,2001,2002,2003,2004,2005,2006,2007,2008,2009,2010,2010,2010,2009,2008,2007,2006,2005,2004,2003,2002,2001,2000,1999,1998,1997,1996,1995,1994,1993,1992,1991,1990,1989,1988,1987,1986,1985,1984,1983,1982,1981,1980,1979,1978,1977,1976,1975,1974,1973,1972,1971,1971],"y":[11,23,42,90,82,49,83,140,179,158,214,237,467,455,427,400,225,500,600,400,null,80,435,375,800,900,1072.4871794871794,1072.4871794871794,1072.4871794871794,850,1072.4871794871794,1072.4871794871794,1072.4871794871794,1072.4871794871794,1072.4871794871794,1072.4871794871794,1072.4871794871794,1072.4871794871794,1072.4871794871794,1072.4871794871794,1072.4871794871794,1072.4871794871794,1072.4871794871794,1072.4871794871794,1072.4871794871794,1072.4871794871794,1072.4871794871794,1072.4871794871794,1072.4871794871794,1072.4871794871794,1072.4871794871794,1072.4871794871794,1072.4871794871794,1072.4871794871794,1072.4871794871794,1072.4871794871794,1072.4871794871794,1072.4871794871794,1072.4871794871794,1072.4871794871794,1072.4871794871794,1072.4871794871794,1072.4871794871794,1072.4871794871794,1072.4871794871794,1072.4871794871794,1072.4871794871794,1072.4871794871794,1072.4871794871794,1072.4871794871794,1072.4871794871794,1072.4871794871794,1072.4871794871794,1072.4871794871794,1072.4871794871794,1072.4871794871794,1072.4871794871794,1072.4871794871794,1072.4871794871794,1072.4871794871794,1072.4871794871794,11],"text":["year: 1971<br />value:   11.000<br />val_df$mean: 1072.487<br />min:   11.000","year: 1972<br />value:   23.000<br />val_df$mean: 1072.487<br />min:   23.000","year: 1973<br />value:   42.000<br />val_df$mean: 1072.487<br />min:   42.000","year: 1974<br />value:   90.000<br />val_df$mean: 1072.487<br />min:   90.000","year: 1975<br />value:   82.000<br />val_df$mean: 1072.487<br />min:   82.000","year: 1976<br />value:   49.000<br />val_df$mean: 1072.487<br />min:   49.000","year: 1977<br />value:   83.000<br />val_df$mean: 1072.487<br />min:   83.000","year: 1978<br />value:  140.000<br />val_df$mean: 1072.487<br />min:  140.000","year: 1979<br />value:  179.000<br />val_df$mean: 1072.487<br />min:  179.000","year: 1980<br />value:  158.000<br />val_df$mean: 1072.487<br />min:  158.000","year: 1981<br />value:  214.000<br />val_df$mean: 1072.487<br />min:  214.000","year: 1982<br />value:  237.000<br />val_df$mean: 1072.487<br />min:  237.000","year: 1983<br />value:  467.000<br />val_df$mean: 1072.487<br />min:  467.000","year: 1984<br />value:  455.000<br />val_df$mean: 1072.487<br />min:  455.000","year: 1985<br />value:  427.000<br />val_df$mean: 1072.487<br />min:  427.000","year: 1986<br />value:  400.000<br />val_df$mean: 1072.487<br />min:  400.000","year: 1987<br />value:  225.000<br />val_df$mean: 1072.487<br />min:  225.000","year: 1988<br />value:  500.000<br />val_df$mean: 1072.487<br />min:  500.000","year: 1989<br />value:  600.000<br />val_df$mean: 1072.487<br />min:  600.000","year: 1990<br />value:  400.000<br />val_df$mean: 1072.487<br />min:  400.000","year: 1991<br />value:       NA<br />val_df$mean: 1072.487<br />min:       NA","year: 1992<br />value:   80.000<br />val_df$mean: 1072.487<br />min:   80.000","year: 1993<br />value:  435.000<br />val_df$mean: 1072.487<br />min:  435.000","year: 1994<br />value:  375.000<br />val_df$mean: 1072.487<br />min:  375.000","year: 1995<br />value:  800.000<br />val_df$mean: 1072.487<br />min:  800.000","year: 1996<br />value:  900.000<br />val_df$mean: 1072.487<br />min:  900.000","year: 1997<br />value: 1072.487<br />val_df$mean: 1072.487<br />min: 1072.487","year: 1998<br />value: 1072.487<br />val_df$mean: 1072.487<br />min: 1072.487","year: 1999<br />value: 1072.487<br />val_df$mean: 1072.487<br />min: 1072.487","year: 2000<br />value:  850.000<br />val_df$mean: 1072.487<br />min:  850.000","year: 2001<br />value: 1072.487<br />val_df$mean: 1072.487<br />min: 1072.487","year: 2002<br />value: 1072.487<br />val_df$mean: 1072.487<br />min: 1072.487","year: 2003<br />value: 1072.487<br />val_df$mean: 1072.487<br />min: 1072.487","year: 2004<br />value: 1072.487<br />val_df$mean: 1072.487<br />min: 1072.487","year: 2005<br />value: 1072.487<br />val_df$mean: 1072.487<br />min: 1072.487","year: 2006<br />value: 1072.487<br />val_df$mean: 1072.487<br />min: 1072.487","year: 2007<br />value: 1072.487<br />val_df$mean: 1072.487<br />min: 1072.487","year: 2008<br />value: 1072.487<br />val_df$mean: 1072.487<br />min: 1072.487","year: 2009<br />value: 1072.487<br />val_df$mean: 1072.487<br />min: 1072.487","year: 2010<br />value: 1072.487<br />val_df$mean: 1072.487<br />min: 1072.487","year: 2010<br />value: 1072.487<br />val_df$mean: 1072.487<br />min: 1072.487","year: 2010<br />value: 1072.487<br />val_df$mean: 1072.487<br />min: 1072.487","year: 2009<br />value: 1072.487<br />val_df$mean: 1072.487<br />min: 1072.487","year: 2008<br />value: 1072.487<br />val_df$mean: 1072.487<br />min: 1072.487","year: 2007<br />value: 1072.487<br />val_df$mean: 1072.487<br />min: 1072.487","year: 2006<br />value: 1072.487<br />val_df$mean: 1072.487<br />min: 1072.487","year: 2005<br />value: 1072.487<br />val_df$mean: 1072.487<br />min: 1072.487","year: 2004<br />value: 1072.487<br />val_df$mean: 1072.487<br />min: 1072.487","year: 2003<br />value: 1072.487<br />val_df$mean: 1072.487<br />min: 1072.487","year: 2002<br />value: 1072.487<br />val_df$mean: 1072.487<br />min: 1072.487","year: 2001<br />value: 1072.487<br />val_df$mean: 1072.487<br />min: 1072.487","year: 2000<br />value:  850.000<br />val_df$mean: 1072.487<br />min:  850.000","year: 1999<br />value: 1072.487<br />val_df$mean: 1072.487<br />min: 1072.487","year: 1998<br />value: 1072.487<br />val_df$mean: 1072.487<br />min: 1072.487","year: 1997<br />value: 1072.487<br />val_df$mean: 1072.487<br />min: 1072.487","year: 1996<br />value:  900.000<br />val_df$mean: 1072.487<br />min:  900.000","year: 1995<br />value:  800.000<br />val_df$mean: 1072.487<br />min:  800.000","year: 1994<br />value:  375.000<br />val_df$mean: 1072.487<br />min:  375.000","year: 1993<br />value:  435.000<br />val_df$mean: 1072.487<br />min:  435.000","year: 1992<br />value:   80.000<br />val_df$mean: 1072.487<br />min:   80.000","year: 1991<br />value:       NA<br />val_df$mean: 1072.487<br />min:       NA","year: 1990<br />value:  400.000<br />val_df$mean: 1072.487<br />min:  400.000","year: 1989<br />value:  600.000<br />val_df$mean: 1072.487<br />min:  600.000","year: 1988<br />value:  500.000<br />val_df$mean: 1072.487<br />min:  500.000","year: 1987<br />value:  225.000<br />val_df$mean: 1072.487<br />min:  225.000","year: 1986<br />value:  400.000<br />val_df$mean: 1072.487<br />min:  400.000","year: 1985<br />value:  427.000<br />val_df$mean: 1072.487<br />min:  427.000","year: 1984<br />value:  455.000<br />val_df$mean: 1072.487<br />min:  455.000","year: 1983<br />value:  467.000<br />val_df$mean: 1072.487<br />min:  467.000","year: 1982<br />value:  237.000<br />val_df$mean: 1072.487<br />min:  237.000","year: 1981<br />value:  214.000<br />val_df$mean: 1072.487<br />min:  214.000","year: 1980<br />value:  158.000<br />val_df$mean: 1072.487<br />min:  158.000","year: 1979<br />value:  179.000<br />val_df$mean: 1072.487<br />min:  179.000","year: 1978<br />value:  140.000<br />val_df$mean: 1072.487<br />min:  140.000","year: 1977<br />value:   83.000<br />val_df$mean: 1072.487<br />min:   83.000","year: 1976<br />value:   49.000<br />val_df$mean: 1072.487<br />min:   49.000","year: 1975<br />value:   82.000<br />val_df$mean: 1072.487<br />min:   82.000","year: 1974<br />value:   90.000<br />val_df$mean: 1072.487<br />min:   90.000","year: 1973<br />value:   42.000<br />val_df$mean: 1072.487<br />min:   42.000","year: 1972<br />value:   23.000<br />val_df$mean: 1072.487<br />min:   23.000","year: 1971<br />value:   11.000<br />val_df$mean: 1072.487<br />min:   11.000","year: 1971<br />value:   11.000<br />val_df$mean: 1072.487<br />min:   11.000"],"type":"scatter","mode":"lines","line":{"width":1.8897637795275593,"color":"transparent","dash":"solid"},"fill":"toself","fillcolor":"rgba(255,127,127,1)","hoveron":"points","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[1971,1971,2010,2010,1971,null,1971,1971,2010,2010,1971,null,1971,1971,2010,2010,1971,null,1971,1971,2010,2010,1971,null,1971,1971,2010,2010,1971,null,1971,1971,2010,2010,1971,null,1971,1971,2010,2010,1971,null,1971,1971,2010,2010,1971,null,1971,1971,2010,2010,1971,null,1971,1971,2010,2010,1971,null,1971,1971,2010,2010,1971,null,1971,1971,2010,2010,1971,null,1971,1971,2010,2010,1971,null,1971,1971,2010,2010,1971,null,1971,1971,2010,2010,1971,null,1971,1971,2010,2010,1971,null,1971,1971,2010,2010,1971,null,1971,1971,2010,2010,1971,null,1971,1971,2010,2010,1971,null,1971,1971,2010,2010,1971,null,1971,1971,2010,2010,1971,null,1971,1971,2010,2010,1971,null,1971,1971,2010,2010,1971,null,1971,1971,2010,2010,1971,null,1971,1971,2010,2010,1971,null,1971,1971,2010,2010,1971,null,1971,1971,2010,2010,1971,null,1971,1971,2010,2010,1971,null,1971,1971,2010,2010,1971,null,1971,1971,2010,2010,1971,null,1971,1971,2010,2010,1971,null,1971,1971,2010,2010,1971,null,1971,1971,2010,2010,1971,null,1971,1971,2010,2010,1971,null,1971,1971,2010,2010,1971,null,1971,1971,2010,2010,1971,null,1971,1971,2010,2010,1971,null,1971,1971,2010,2010,1971,null,1971,1971,2010,2010,1971,null,1971,1971,2010,2010,1971],"y":[-175.33323336318176,2320.3075923375409,2320.3075923375409,-175.33323336318176,-175.33323336318176,null,-175.33323336318176,2320.3075923375409,2320.3075923375409,-175.33323336318176,-175.33323336318176,null,-175.33323336318176,2320.3075923375409,2320.3075923375409,-175.33323336318176,-175.33323336318176,null,-175.33323336318176,2320.3075923375409,2320.3075923375409,-175.33323336318176,-175.33323336318176,null,-175.33323336318176,2320.3075923375409,2320.3075923375409,-175.33323336318176,-175.33323336318176,null,-175.33323336318176,2320.3075923375409,2320.3075923375409,-175.33323336318176,-175.33323336318176,null,-175.33323336318176,2320.3075923375409,2320.3075923375409,-175.33323336318176,-175.33323336318176,null,-175.33323336318176,2320.3075923375409,2320.3075923375409,-175.33323336318176,-175.33323336318176,null,-175.33323336318176,2320.3075923375409,2320.3075923375409,-175.33323336318176,-175.33323336318176,null,-175.33323336318176,2320.3075923375409,2320.3075923375409,-175.33323336318176,-175.33323336318176,null,-175.33323336318176,2320.3075923375409,2320.3075923375409,-175.33323336318176,-175.33323336318176,null,-175.33323336318176,2320.3075923375409,2320.3075923375409,-175.33323336318176,-175.33323336318176,null,-175.33323336318176,2320.3075923375409,2320.3075923375409,-175.33323336318176,-175.33323336318176,null,-175.33323336318176,2320.3075923375409,2320.3075923375409,-175.33323336318176,-175.33323336318176,null,-175.33323336318176,2320.3075923375409,2320.3075923375409,-175.33323336318176,-175.33323336318176,null,-175.33323336318176,2320.3075923375409,2320.3075923375409,-175.33323336318176,-175.33323336318176,null,-175.33323336318176,2320.3075923375409,2320.3075923375409,-175.33323336318176,-175.33323336318176,null,-175.33323336318176,2320.3075923375409,2320.3075923375409,-175.33323336318176,-175.33323336318176,null,-175.33323336318176,2320.3075923375409,2320.3075923375409,-175.33323336318176,-175.33323336318176,null,-175.33323336318176,2320.3075923375409,2320.3075923375409,-175.33323336318176,-175.33323336318176,null,-175.33323336318176,2320.3075923375409,2320.3075923375409,-175.33323336318176,-175.33323336318176,null,-175.33323336318176,2320.3075923375409,2320.3075923375409,-175.33323336318176,-175.33323336318176,null,-175.33323336318176,2320.3075923375409,2320.3075923375409,-175.33323336318176,-175.33323336318176,null,-175.33323336318176,2320.3075923375409,2320.3075923375409,-175.33323336318176,-175.33323336318176,null,-175.33323336318176,2320.3075923375409,2320.3075923375409,-175.33323336318176,-175.33323336318176,null,-175.33323336318176,2320.3075923375409,2320.3075923375409,-175.33323336318176,-175.33323336318176,null,-175.33323336318176,2320.3075923375409,2320.3075923375409,-175.33323336318176,-175.33323336318176,null,-175.33323336318176,2320.3075923375409,2320.3075923375409,-175.33323336318176,-175.33323336318176,null,-175.33323336318176,2320.3075923375409,2320.3075923375409,-175.33323336318176,-175.33323336318176,null,-175.33323336318176,2320.3075923375409,2320.3075923375409,-175.33323336318176,-175.33323336318176,null,-175.33323336318176,2320.3075923375409,2320.3075923375409,-175.33323336318176,-175.33323336318176,null,-175.33323336318176,2320.3075923375409,2320.3075923375409,-175.33323336318176,-175.33323336318176,null,-175.33323336318176,2320.3075923375409,2320.3075923375409,-175.33323336318176,-175.33323336318176,null,-175.33323336318176,2320.3075923375409,2320.3075923375409,-175.33323336318176,-175.33323336318176,null,-175.33323336318176,2320.3075923375409,2320.3075923375409,-175.33323336318176,-175.33323336318176,null,-175.33323336318176,2320.3075923375409,2320.3075923375409,-175.33323336318176,-175.33323336318176,null,-175.33323336318176,2320.3075923375409,2320.3075923375409,-175.33323336318176,-175.33323336318176,null,-175.33323336318176,2320.3075923375409,2320.3075923375409,-175.33323336318176,-175.33323336318176,null,-175.33323336318176,2320.3075923375409,2320.3075923375409,-175.33323336318176,-175.33323336318176,null,-175.33323336318176,2320.3075923375409,2320.3075923375409,-175.33323336318176,-175.33323336318176],"text":"","type":"scatter","mode":"lines","line":{"width":1.8897637795275593,"color":"transparent","dash":"solid"},"fill":"toself","fillcolor":"rgba(255,255,255,1)","hoveron":"fills","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[1969.05,2011.95],"y":[1072.4871794871794,1072.4871794871794],"text":"yintercept: 1072.487","type":"scatter","mode":"lines","line":{"width":1.8897637795275593,"color":"rgba(0,0,0,1)","dash":"dash"},"hoveron":"points","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[1969.05,2011.95],"y":[2320.3075923375409,2320.3075923375409],"text":"yintercept: 2320.308","type":"scatter","mode":"lines","line":{"width":1.8897637795275593,"color":"rgba(0,0,0,1)","dash":"solid"},"hoveron":"points","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[1969.05,2011.95],"y":[-175.33323336318176,-175.33323336318176],"text":"yintercept: -175.3332","type":"scatter","mode":"lines","line":{"width":1.8897637795275593,"color":"rgba(0,0,0,1)","dash":"solid"},"hoveron":"points","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[1971,1972,1973,1974,1975,1976,1977,1978,1979,1980,1981,1982,1983,1984,1985,1986,1987,1988,1989,1990,1991,1992,1993,1994,1995,1996,1997,1998,1999,2000,2001,2002,2003,2004,2005,2006,2007,2008,2009,2010],"y":[11,23,42,90,82,49,83,140,179,158,214,237,467,455,427,400,225,500,600,400,null,80,435,375,800,900,1200,1400,2150,850,2250,2220,2300,3000,2800,2025,5075,3975,2185,3025],"text":["year: 1971<br />value:   11","year: 1972<br />value:   23","year: 1973<br />value:   42","year: 1974<br />value:   90","year: 1975<br />value:   82","year: 1976<br />value:   49","year: 1977<br />value:   83","year: 1978<br />value:  140","year: 1979<br />value:  179","year: 1980<br />value:  158","year: 1981<br />value:  214","year: 1982<br />value:  237","year: 1983<br />value:  467","year: 1984<br />value:  455","year: 1985<br />value:  427","year: 1986<br />value:  400","year: 1987<br />value:  225","year: 1988<br />value:  500","year: 1989<br />value:  600","year: 1990<br />value:  400","year: 1991<br />value:   NA","year: 1992<br />value:   80","year: 1993<br />value:  435","year: 1994<br />value:  375","year: 1995<br />value:  800","year: 1996<br />value:  900","year: 1997<br />value: 1200","year: 1998<br />value: 1400","year: 1999<br />value: 2150","year: 2000<br />value:  850","year: 2001<br />value: 2250","year: 2002<br />value: 2220","year: 2003<br />value: 2300","year: 2004<br />value: 3000","year: 2005<br />value: 2800","year: 2006<br />value: 2025","year: 2007<br />value: 5075","year: 2008<br />value: 3975","year: 2009<br />value: 2185","year: 2010<br />value: 3025"],"type":"scatter","mode":"lines","line":{"width":3.7795275590551185,"color":"rgba(0,0,0,1)","dash":"solid"},"hoveron":"points","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null}],"layout":{"margin":{"t":48.544624325446243,"r":7.3059360730593621,"b":44.167704441677046,"l":52.934827729348285},"plot_bgcolor":"rgba(255,255,255,1)","paper_bgcolor":"rgba(255,255,255,1)","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724},"title":{"text":"<b> Brown Pelican <\/b>","font":{"color":"rgba(0,0,0,1)","family":"","size":22.316313823163139},"x":0,"xref":"paper"},"xaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[1969.05,2011.95],"tickmode":"array","ticktext":["1971","1976","1981","1986","1991","1996","2001","2006"],"tickvals":[1971,1976,1981,1986,1991,1996,2001,2006],"categoryorder":"array","categoryarray":["1971","1976","1981","1986","1991","1996","2001","2006"],"nticks":null,"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":3.6529680365296811,"tickwidth":0.66417600664176002,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.68949771689498},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(235,235,235,1)","gridwidth":0.66417600664176002,"zeroline":false,"anchor":"y","title":{"text":"<b> Year <\/b>","font":{"color":"rgba(0,0,0,1)","family":"","size":18.596928185969279}},"hoverformat":".2f"},"yaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[-437.84989503134085,5337.516661668159],"tickmode":"array","ticktext":["0","1000","2000","3000","4000","5000"],"tickvals":[0,1000,2000.0000000000002,2999.9999999999995,3999.9999999999995,5000],"categoryorder":"array","categoryarray":["0","1000","2000","3000","4000","5000"],"nticks":null,"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":3.6529680365296811,"tickwidth":0.66417600664176002,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.68949771689498},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(235,235,235,1)","gridwidth":0.66417600664176002,"zeroline":false,"anchor":"x","title":{"text":"<b> Number of Nests  <\/b>","font":{"color":"rgba(0,0,0,1)","family":"","size":18.596928185969279}},"hoverformat":".2f"},"shapes":[{"type":"rect","fillcolor":"transparent","line":{"color":"rgba(51,51,51,1)","width":0.66417600664176002,"linetype":"solid"},"yref":"paper","xref":"paper","x0":0,"x1":1,"y0":0,"y1":1}],"showlegend":false,"legend":{"bgcolor":"rgba(255,255,255,1)","bordercolor":"transparent","borderwidth":1.8897637795275593,"font":{"color":"rgba(0,0,0,1)","family":"","size":11.68949771689498}},"hovermode":"closest","barmode":"relative"},"config":{"doubleClick":"reset","modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"source":"A","attrs":{"39f84e652a4f":{"x":{},"y":{},"ymax":{},"ymin":{},"type":"scatter"},"39f8645d23ff":{"x":{},"y":{},"ymax":{},"ymin":{}},"39f856257d3e":{"x":{},"y":{},"xmin":{},"xmax":{},"ymin":{},"ymax":{}},"39f85d445373":{"yintercept":{}},"39f82b953ad3":{"yintercept":{}},"39f82f17717d":{"yintercept":{}},"39f87d291041":{"x":{},"y":{}}},"cur_data":"39f84e652a4f","visdat":{"39f84e652a4f":["function (y) ","x"],"39f8645d23ff":["function (y) ","x"],"39f856257d3e":["function (y) ","x"],"39f85d445373":["function (y) ","x"],"39f82b953ad3":["function (y) ","x"],"39f82f17717d":["function (y) ","x"],"39f87d291041":["function (y) ","x"]},"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

@@ -1,0 +1,18 @@
+project:
+  type: book
+  output-dir: docs
+
+book:
+  title: "App_Book_Test"
+  author: "Brittany Troast"
+  chapters:
+    - index.qmd
+    - Shiny_App_quarto.qmd
+
+
+format:
+  html:
+    theme: cosmo
+
+filters:
+  - shinylive
